@@ -10,7 +10,7 @@ public class DrawSquare {
         // %%%%%%
         //
         // The square should have as many lines as lineCount is
-        int lineCount = 8;
+        int lineCount = 10;
         for (int i = 1; i <= lineCount; i++) {
             if (i==1 || i==lineCount){
                 for (int j = 0; j < lineCount; j++) {
