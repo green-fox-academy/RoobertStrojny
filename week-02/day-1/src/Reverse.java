@@ -9,7 +9,7 @@ public class Reverse {
         // At first, solve this task using the `charAt()` function
         // Try other solutions when you are done
 
-        System.out.println(reverse(toBeReversed))
+        System.out.println(reverse(toBeReversed));
     }
 
     public static String reverse(String rev){
