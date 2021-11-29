@@ -3,8 +3,9 @@ public class Strings {
         //simpleReplace();
         //urlFixer();
         //takesLonger();
-        toDoPrint();
+        //toDoPrint();
     }
+
 
     private static void toDoPrint() {
         String todoText = " - Buy milk\n";
@@ -21,7 +22,7 @@ public class Strings {
         todoText = sb.insert(0, "My todo:\n").toString();
         todoText = sb.insert(todoText.lastIndexOf("\n"), "\n - Download games\n").toString();
         todoText = sb.insert(todoText.lastIndexOf("\n"), "\t - Diablo").toString();
-        
+
 
         System.out.println(todoText);
 
