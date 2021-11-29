@@ -1,10 +1,42 @@
-import java.util.Arrays;
-
 public class Strings {
     public static void main(String[] args) {
         //simpleReplace();
-        urlFixer();
+        //urlFixer();
+        //takesLonger();
+        toDoPrint();
+    }
 
+    private static void toDoPrint() {
+        String todoText = " - Buy milk\n";
+        // Add "My todo" to the beginning of the `todoText`
+        // Add " - Download games" to the end of the `todoText`
+        // Add " - Diablo" to the end of the `todoText` applying indention
+        // Expected output:
+        // My todo:
+        //  - Buy milk
+        //  - Download games
+        //      - Diablo
+
+        StringBuilder sb = new StringBuilder(todoText);
+        todoText = sb.insert(0, "My todo:\n").toString();
+        todoText = sb.insert(todoText.lastIndexOf("\n"), "\n - Download games\n").toString();
+        todoText = sb.insert(todoText.lastIndexOf("\n"), "\t - Diablo").toString();
+        
+
+        System.out.println(todoText);
+
+    }
+
+    private static void takesLonger() {
+        String quote = "Hofstadter's Law: It you expect, even when you take into account Hofstadter's Law.";
+
+        // When saving this quote a disk error has occurred. Please fix it!
+        // Insert the words "always takes longer than" between the words "It" and "you" using the StringBuilder class!
+        // Use pieces of the `quote` variable, e.g. quote.substring(...), instead of just redefining the string!
+        StringBuilder sb = new StringBuilder(quote);
+
+        sb.insert(21,"always takes longer than ");
+        System.out.println(sb.toString());
     }
 
     private static void urlFixer() {
