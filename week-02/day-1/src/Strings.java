@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Strings {
     public static void main(String[] args) {
         //simpleReplace();
@@ -11,9 +13,19 @@ public class Strings {
         // Accidentally I got the wrong URL for a funny subreddit. It's probably "odds" and not "bots"
         // Also, the URL is missing a crucial component, find out what it is and insert it too!
         // Try to solve it more than once using different String functions!
-        url.replace("bots", "odds");
-        String newUrl = url.replace("https", "https:");
-        System.out.println(newUrl);
+
+        // first method
+        //url.replace("bots", "odds");
+        //String newUrl = url.replace("https", "https:");
+        //System.out.println(newUrl);
+
+        StringBuilder sb = new StringBuilder(url);   //second method
+        sb.insert(5, ':');
+        sb.replace(39,43, "odds");
+        System.out.println(sb.toString());
+
+
+
     }
 
     public static void simpleReplace(){
