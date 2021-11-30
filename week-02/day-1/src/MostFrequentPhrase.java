@@ -19,15 +19,10 @@ public class MostFrequentPhrase {
         "and she was still little clumsy dark-complected Janice Springer and her\n" +
         "husband was a conceited lunk who wasn’t good for anything in the world Daddy\n" +
         "said and the feeling of being alone would melt a little with a little drink.\n";
-        System.out.println(mostFrequentWord(randomString));
+        //System.out.println(mostFrequentWord(randomString));
 
     }
-    public static String mostFrequentWord(String input){
-        input = input.toLowerCase(Locale.ROOT);
-        String[] inputSplit = input.split(" ");
-
-        return inputSplit.toString();
-
-
+    public static String mostFrequentWord(String input) {
+        return input;
     }
 }
