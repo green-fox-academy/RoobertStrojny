@@ -27,24 +27,23 @@ public class Doubled {
         Path output = Paths.get("output.txt");
         try {
             List<String> fileList = Files.readAllLines(path);
-            char[] words = fileList.toString().toCharArray();
-            List<Character> finalList = new ArrayList<>();
-            List<String> finalString = new ArrayList<>();
-            for (int j = 0; j < words.length-1; j+=2) {
+            char[] words = fileList.toString().toCharArray();  // converting list to char array
+            List<Character> finalList = new ArrayList<>();    //character list
+            List<String> finalString = new ArrayList<>();     //final list for writing to file
+            for (int j = 0; j < words.length-1; j+=2) {      //getting every 2. character to char-list
                     finalList.add(words[j]);
             }
             finalList.remove(0);
-            finalList.remove(finalList.size()-1);
             StringBuilder sb = new StringBuilder();
-            for (Character c : finalList){
+            for (Character c : finalList){                  // building finallist
                 if (c == '.'){
-                    sb.append(".\n");
+                    sb.append(".\n");                      //getting new line after each '.'
                 }else {
                     sb.append(c);
                 }
             }
 
-            finalString.add(sb.toString().trim());
+            finalString.add(sb.toString());
 
             System.out.println(finalString);
             Files.write(output, finalString);

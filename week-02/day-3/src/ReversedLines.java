@@ -3,7 +3,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ReversedLines {
@@ -28,7 +27,7 @@ public class ReversedLines {
 
             Files.write(reversedPath, linesFinal);
         } catch (IOException e) {
-            System.out.println("CANT READ FILE!!");;
+            System.out.println("CANT READ FILE!!");
         }
     }
 }
