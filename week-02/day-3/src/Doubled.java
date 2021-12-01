@@ -37,11 +37,11 @@ public class Doubled {
             finalList.remove(finalList.size()-1);
             StringBuilder sb = new StringBuilder();
             for (Character c : finalList){
-//                if (c == ','){
-//                    sb.append("\n");
-//                }else {
+                if (c == '.'){
+                    sb.append(".\n");
+                }else {
                     sb.append(c);
-//                }
+                }
             }
 
             finalString.add(sb.toString().trim());
