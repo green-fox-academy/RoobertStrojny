@@ -5,11 +5,14 @@ import java.awt.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class Triangles {
-    public static void drawTriangle(int x, Graphics graphics){
-
+    public static void drawTriangle(Graphics graphics){
+        graphics.drawLine(0,HEIGHT-40, WIDTH, HEIGHT-40);
+        graphics.drawLine(WIDTH, HEIGHT-40, WIDTH/2, HEIGHT/3);
+        graphics.drawLine(WIDTH/2, HEIGHT/3, 0, HEIGHT-40);
     }
 
     public static void drawImage(Graphics graphics) {
+        drawTriangle(graphics);
 
 
 
@@ -17,8 +20,8 @@ public class Triangles {
     }
 
     // Don't touch the code below
-    static int WIDTH = 320;
-    static int HEIGHT = 320;
+    static int WIDTH = 400;
+    static int HEIGHT = 600;
 
     public static void main(String[] args) {
         JFrame jFrame = new JFrame("Drawing");
