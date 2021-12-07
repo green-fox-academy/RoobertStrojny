@@ -1,14 +1,14 @@
 import animals.Animals;
 import blogpost.BlogPost;
 import postit.PostIt;
-import sharpie.Sharpie;
+import sharpieset.Sharpie;
 
 public class Main {
     public static void main(String[] args) {
-        createPostItObjects();
-        createBlogPostObjects();
-        animalsObjects();
-        sharpieObjects();
+//        createPostItObjects();
+//        createBlogPostObjects();
+//        animalsObjects();
+//        sharpieObjects();
 
 
     }

@@ -1,4 +1,4 @@
-package sharpie;
+package sharpieset;
 
 public class Sharpie {
     String color;
