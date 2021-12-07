@@ -1,12 +1,14 @@
 import animals.Animals;
 import blogpost.BlogPost;
 import postit.PostIt;
+import sharpie.Sharpie;
 
 public class Main {
     public static void main(String[] args) {
         createPostItObjects();
         createBlogPostObjects();
         animalsObjects();
+        sharpieObjects();
 
 
     }
@@ -33,5 +35,10 @@ public class Main {
         dog.eat();
         dog.drink();
         dog.play();
+    }
+
+    public static void sharpieObjects(){
+        Sharpie redSharpie = new Sharpie("red", 5);
+        redSharpie.use();
     }
 }
