@@ -19,21 +19,16 @@ public class SierpinskyCarpet {
         int height = y/3;
         int sizeRecursive = size/3;
 
-        if (size < 1) {
-
-            for (int i = 0; i < height; i += height / 3) {
-                for (int j = 0; j < width; j += width / 3) {
-                    recursiveSquare(j, i, size / 3, graphics);
-                }
-            }
+        if (size > 1){
 
         }
 
-    }
+
 
 
     public static void drawImage(Graphics graphics) {
         recursiveSquare(WIDTH, HEIGHT, WIDTH, graphics);
+
 
     }
 
