@@ -15,4 +15,10 @@ public class Sharpie {
         System.out.println("You just used your sharpie. Ink amount is now: " + inkAmount);
     }
 
+    @Override
+    public String toString() {
+        return "Sharpie{" +
+                "color='" + color + '\'' +
+                '}';
+    }
 }
