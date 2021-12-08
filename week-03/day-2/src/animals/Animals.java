@@ -24,4 +24,12 @@ public class Animals {
         thirst++;
         System.out.println("Hunger and thirst increased by one. Current hunger : " + hunger + ", thirst : " +thirst);
     }
+
+    @Override
+    public String toString() {
+        return "Animals{" +
+                "name='" + name + '\'' +
+                ", hunger=" + hunger +
+                '}';
+    }
 }
