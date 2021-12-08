@@ -5,74 +5,83 @@ import java.util.Random;
 public class Pirate {
     int pirateIntoxication = 0;
     boolean isDead = false;
-    boolean isPassedOut = false;
 
     public Pirate() {
     }
 
     public void drinkSomeRum() {
-        if (!this.isDead()) {
+        if (!isDead()) {
             pirateIntoxication++;
         } else {
-            this.isDead();
+            printDeadMessage();
         }
     }
 
     public void howsItGoingMate() {
-        if (!this.isDead()) {
-            if (pirateIntoxication < 4) {
-                System.out.println("Pour me anudder!");
-            } else {
-                System.out.println("Arghh, I'ma Pirate. How d'ya d'ink its goin?");
-                System.out.println("Pirate just passed out...");
-                pirateIntoxication = 0;
-                isPassedOut = true;
-            }
-        } else {
-            this.isDead();
+        if (isDead()) {
+            printDeadMessage();
+            return;
         }
+
+        if (pirateIntoxication < 4) {
+            System.out.println("Pour me anudder!");
+        } else {
+            System.out.println("Arghh, I'ma Pirate. How d'ya d'ink its goin?");
+            System.out.println("Pirate just passed out...");
+            passOut();
+        }
+    }
+
+    public void passOut() {
+        pirateIntoxication = 0;
     }
 
     public void brawl(Pirate pirate) {
         Random random = new Random();
-        float chance = random.nextFloat(100);
+        int chance = random.nextInt(0, 3);
 
-        if (pirate.isDead != true && this.isDead != true) {
-            if (chance < 33.33) {
-                this.isDead = true;
-                System.out.println(this + " dies.");
-            } else if (chance < 66.66 && chance > 33.33) {
-                pirate.isDead = true;
-                System.out.println(pirate + "dies.");
-            } else {
-                this.isPassedOut = true;
-                pirate.isPassedOut = true;
-                System.out.println("they both passed out!");
-            }
-        } else {
-            this.isDead();
+        if (this.isDead) {
+            printDeadMessage();
+            return;
         }
 
+        if (pirate.isDead) {
+            System.out.println("You can't fight a dead pirate!");
+            return;
+        }
 
+        switch (chance) {
+            case (0): {
+                this.die();
+                System.out.println("You won! Other pirate is dead... RIP");
+                break;
+            }
+            case (1): {
+                pirate.die();
+                System.out.println("Your pirate died... RIP");
+                break;
+            }
+            case (2): {
+                this.passOut();
+                pirate.passOut();
+                System.out.println("They both passed out!");
+                break;
+            }
+        }
     }
 
     public void die() {
-        this.isDead = true;
+        isDead = true;
     }
 
-    private boolean isDead() {
-        if (this.isDead == true) {
-            System.out.println("he's dead...");
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isDead() {
+        return isDead;
     }
 
-    @Override
-    public String toString() {
-        return "Pirate{}";
+    private void printDeadMessage() {
+        System.out.println("he's dead...");
     }
+
 
     public static void main(String[] args) {
         Pirate pirate1 = new Pirate();
@@ -84,6 +93,8 @@ public class Pirate {
         pirate1.die();
         pirate1.drinkSomeRum();
 
-        pirate1.brawl(pirate2);
+        pirate3.brawl(pirate2);
     }
+
+
 }
