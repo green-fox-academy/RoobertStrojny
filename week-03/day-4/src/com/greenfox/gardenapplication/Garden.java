@@ -48,12 +48,4 @@ public class Garden {
                     " is " + plants.getWaterAmount());
         }
     }
-
-    public List<Plants> getPlantsList() {
-        return plantsList;
-    }
-
-    public void setPlantsList(List<Plants> plantsList) {
-        this.plantsList = plantsList;
-    }
 }

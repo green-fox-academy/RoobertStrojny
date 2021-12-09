@@ -25,10 +25,6 @@ public class Plants {
         }
     }
 
-    protected void absorb(){
-
-    }
-
     public boolean plantNeedWater(){
         return this.needsWater;
     }
