@@ -18,6 +18,10 @@ public class Gnirts implements CharSequence{
         return reverse(this.string).charAt(index);
     }
 
+    private CharSequence reverse(String string) {
+        return "a";
+    }
+
     @Override
     public CharSequence subSequence(int start, int end) {
         return null;

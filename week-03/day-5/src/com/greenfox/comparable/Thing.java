@@ -24,10 +24,8 @@ public class Thing implements Comparable<Thing> {
     public int compareTo(Thing thing) {
         if (this.completed && !thing.completed) {
             return -1;
-        } else if (this.name == thing.name){
-            return 1;
         } else {
-            return 0;
+            return this.name.compareTo(thing.name);
         }
     }
 }
