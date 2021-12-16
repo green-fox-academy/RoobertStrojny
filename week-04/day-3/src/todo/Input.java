@@ -9,6 +9,7 @@ import java.util.List;
 public class Input {
 
     public void handleInput(String[] args) {
+        TaskManagement task = new TaskManagement();
 
         if (args == null || args.length < 1) {
             printUsage();
@@ -21,9 +22,7 @@ public class Input {
                     System.out.println("Unsupported argument");
                     break;
                 }
-
-                ListTask list = new ListTask();
-                list.listTask();
+                task.list();
                 break;
             }
             case "-a": {
@@ -31,8 +30,7 @@ public class Input {
                     System.out.println("Unable to add: no task provided");
                     break;
                 }
-                AddTask add = new AddTask();
-                add.setTask(getString(args));
+                task.add(getString(args));
                 break;
             }
             case "-r": {
