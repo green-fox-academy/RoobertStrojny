@@ -23,5 +23,13 @@ public class ErrorHandling {
         }
     }
 
+    public void writeToListAndCheckFileException(List<String> list){
+        try {
+            Files.write(path(), list);
+        } catch (IOException e) {
+            System.out.println("Can't find file path!");
+        }
+    }
+
 
 }

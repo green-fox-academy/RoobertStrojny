@@ -10,13 +10,9 @@ import java.util.List;
 public class AddTask {
 
     public void setTask(String task) {
-        Path path = Paths.get("todo/task/tasks.txt");
-        try {
-            List<String> taskList = Files.readAllLines(path);
-            taskList.add("[ ] " + task);
-            Files.write(path, taskList);
-        } catch (IOException e) {
-            System.out.println("Can't find file path!");
-        }
+        ErrorHandling error = new ErrorHandling();
+        List<String> taskList = error.makeListAndCheckFileException();
+        taskList.add("[ ] " + task);
+        error.writeToListAndCheckFileException(taskList);
     }
 }
