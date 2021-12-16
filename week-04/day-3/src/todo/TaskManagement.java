@@ -30,8 +30,7 @@ public class TaskManagement {
     }
 
     public void remove(String[] args) {
-        if (args.length == 1) {
-            System.out.println("Unable to remove: no index provided");
+        if (!error.checkIfIndexIsProvided(args, "remove")){
             return;
         }
 

@@ -41,5 +41,13 @@ public class ErrorHandling {
         }
     }
 
+    public boolean checkIfIndexIsProvided(String[] args, String string) {
+        if (args.length == 1) {
+            System.out.println("Unable to "+ string + ": no index provided");
+            return false;
+        }
+        return true;
+    }
+
 
 }
