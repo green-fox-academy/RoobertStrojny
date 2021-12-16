@@ -1,4 +1,4 @@
-package todo.task;
+package todo;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,13 +14,14 @@ public class ErrorHandling {
         return path;
     }
 
-    public List<String> makeListAndCheckFileError() {
+    public List<String> makeListAndCheckFileException() {
         try {
-            List<String> taskList = Files.readAllLines(path());
-            return taskList;
+            return Files.readAllLines(path());
         } catch (IOException e) {
             System.out.println("Can't find file path!");
-            return new ArrayList<>();
+            return null;
         }
     }
+
+
 }
