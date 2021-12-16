@@ -30,7 +30,7 @@ public class Input {
                     System.out.println("Unable to add: no task provided");
                     break;
                 }
-                task.add(getString(args));
+                task.add(getInputString(args));
                 break;
             }
             case "-r": {
@@ -38,7 +38,7 @@ public class Input {
                 break;
             }
             case "-c": {
-                checkTask(args);
+                task.check(args);
                 break;
             }
             default: {
@@ -58,7 +58,7 @@ public class Input {
         System.out.println("\t-c   Completes an task");
     }
 
-    private String getString(String[] args) {
+    private String getInputString(String[] args) {
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i < args.length; i++) {
             sb.append(args[i]).append(" ");
@@ -66,46 +66,4 @@ public class Input {
 
         return sb.toString();
     }
-
-    private void checkTask(String[] args) {
-        Path path = Paths.get("todo/task/tasks.txt");
-        try {
-            if (args.length == 1) {
-                System.out.println("Unable to check: no index provided");
-                return;
-            }
-
-            try {
-                int index = Integer.parseInt(args[1]);
-            } catch (NumberFormatException e) {
-                System.out.println("Unable to check: index is not a number");
-                return;
-            }
-
-            int index = Integer.parseInt(args[1]) - 1;
-            List<String> taskList = Files.readAllLines(path);
-
-            try {
-                taskList.remove(index);
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Unable to check: index is out of bound");
-                return;
-            }
-
-            StringBuilder sb = new StringBuilder();
-            sb.append(taskList.get(index));
-            sb.replace(0, 3, "[x]");
-
-
-            taskList.remove(index);
-            taskList.add(index, sb.toString());
-            Files.write(path, taskList);
-
-        } catch (IOException e) {
-            System.out.println("Can't find file path!");
-        }
-
-    }
-
-
 }

@@ -4,13 +4,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskManagement {
     ErrorHandling error = new ErrorHandling();
+    List<String> taskList = new ArrayList<>();
 
     public void list() {
-        List<String> taskList = error.makeListAndCheckFileException();
+        taskList = error.makeListAndCheckFileException();
         if (taskList.isEmpty()) {
             System.out.println("No todos for today! :)");
         } else {
@@ -24,7 +26,7 @@ public class TaskManagement {
     }
 
     public void add(String task) {
-        List<String> taskList = error.makeListAndCheckFileException();
+        taskList = error.makeListAndCheckFileException();
         taskList.add("[ ] " + task);
         error.writeToListAndCheckFileException(taskList);
     }
@@ -39,7 +41,7 @@ public class TaskManagement {
         }
 
         int index = Integer.parseInt(args[1]) - 1;
-        List<String> taskList = error.makeListAndCheckFileException();
+        taskList = error.makeListAndCheckFileException();
 
         if (!error.checkIfIndexIsOutOfBound(taskList, index, "remove")){
             return;
@@ -47,6 +49,33 @@ public class TaskManagement {
 
         taskList.remove(index);
         error.writeToListAndCheckFileException(taskList);
+
+    }
+
+    public void check(String[] args) {
+        if (!error.checkIfIndexIsProvided(args, "check")) {
+            return;
+        }
+
+        if (!error.checkIfInputIsNumber(args, "check")) {
+            return;
+        }
+
+        int index = Integer.parseInt(args[1]) - 1;
+        taskList = error.makeListAndCheckFileException();
+
+        if (!error.checkIfIndexIsOutOfBound(taskList, index, "check")){
+            return;
+        }
+
+            StringBuilder sb = new StringBuilder();
+            sb.append(taskList.get(index));
+            sb.replace(0, 3, "[x]");
+
+
+            taskList.remove(index);
+            taskList.add(index, sb.toString());
+            error.writeToListAndCheckFileException(taskList);
 
     }
 
