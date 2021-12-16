@@ -1,16 +1,10 @@
 package todo;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
-public class ListTask {
+public class TaskManagement {
 
-    public void listTask() {
+    public void list() {
         ErrorHandling error = new ErrorHandling();
         List<String> taskList = error.makeListAndCheckFileException();
         if (taskList.isEmpty()) {
@@ -24,4 +18,12 @@ public class ListTask {
         }
 
     }
+
+    public void setTask(String task) {
+        ErrorHandling error = new ErrorHandling();
+        List<String> taskList = error.makeListAndCheckFileException();
+        taskList.add("[ ] " + task);
+        error.writeToListAndCheckFileException(taskList);
+    }
+
 }
