@@ -15,7 +15,6 @@ public class Input {
             return;
         }
 
-
         switch (args[0]) {
             case "-l": {
                 if (args.length > 1) {
@@ -131,6 +130,8 @@ public class Input {
             StringBuilder sb = new StringBuilder();
             sb.append(taskList.get(index));
             sb.replace(0, 3, "[x]");
+
+
             taskList.remove(index);
             taskList.add(index, sb.toString());
             Files.write(path, taskList);
@@ -138,6 +139,10 @@ public class Input {
         } catch (IOException e) {
             System.out.println("Can't find file path!");
         }
+
+    }
+
+    private void checkIfChecked() {
 
     }
 
