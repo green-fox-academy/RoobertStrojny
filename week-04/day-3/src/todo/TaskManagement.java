@@ -29,32 +29,29 @@ public class TaskManagement {
         error.writeToListAndCheckFileException(taskList);
     }
 
-    private void remove(String[] args) {
-            if (args.length == 1) {
-                System.out.println("Unable to remove: no index provided");
-                return;
-            }
-
-            try {
-                int index = Integer.parseInt(args[1]);
-            } catch (NumberFormatException e) {
-                System.out.println("Unable to remove: index is not a number");
-                return;
-            }
-
-            int index = Integer.parseInt(args[1]) - 1;
-            List<String> taskList = error.makeListAndCheckFileException();
-
-            try {
-                taskList.remove(index);
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Unable to remove: index is out of bound");
-                return;
-            }
-
-            taskList.remove(index);
-            error.writeToListAndCheckFileException(taskList);
-
+    public void remove(String[] args) {
+        if (args.length == 1) {
+            System.out.println("Unable to remove: no index provided");
+            return;
         }
 
+        if (!error.checkIfInputIsNumber(args, "remove")) {
+            return;
+        }
+
+        int index = Integer.parseInt(args[1]) - 1;
+        List<String> taskList = error.makeListAndCheckFileException();
+
+        try {
+            taskList.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Unable to remove: index is out of bound");
+            return;
+        }
+
+        taskList.remove(index);
+        error.writeToListAndCheckFileException(taskList);
+
     }
+
+}

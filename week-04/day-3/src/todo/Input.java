@@ -34,7 +34,7 @@ public class Input {
                 break;
             }
             case "-r": {
-                rmTask(args);
+                task.remove(args);
                 break;
             }
             case "-c": {
@@ -65,39 +65,6 @@ public class Input {
         }
 
         return sb.toString();
-    }
-
-    private void rmTask(String[] args) {
-        Path path = Paths.get("todo/task/tasks.txt");
-        try {
-            if (args.length == 1) {
-                System.out.println("Unable to remove: no index provided");
-                return;
-            }
-
-            try {
-                int index = Integer.parseInt(args[1]);
-            } catch (NumberFormatException e) {
-                System.out.println("Unable to remove: index is not a number");
-                return;
-            }
-
-            int index = Integer.parseInt(args[1]) - 1;
-            List<String> taskList = Files.readAllLines(path);
-
-            try {
-                taskList.remove(index);
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Unable to remove: index is out of bound");
-                return;
-            }
-
-            taskList.remove(index);
-            Files.write(path, taskList);
-
-        } catch (IOException e) {
-            System.out.println("Can't find file path!");
-        }
     }
 
     private void checkTask(String[] args) {
@@ -137,10 +104,6 @@ public class Input {
         } catch (IOException e) {
             System.out.println("Can't find file path!");
         }
-
-    }
-
-    private void checkIfChecked() {
 
     }
 

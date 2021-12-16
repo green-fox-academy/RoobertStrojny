@@ -23,11 +23,21 @@ public class ErrorHandling {
         }
     }
 
-    public void writeToListAndCheckFileException(List<String> list){
+    public void writeToListAndCheckFileException(List<String> list) {
         try {
             Files.write(path(), list);
         } catch (IOException e) {
             System.out.println("Can't find file path!");
+        }
+    }
+
+    public boolean checkIfInputIsNumber(String[] args, String string) {
+        try {
+            int index = Integer.parseInt(args[1]);
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("Unable to " + string + ": index is not a number");
+            return false;
         }
     }
 
