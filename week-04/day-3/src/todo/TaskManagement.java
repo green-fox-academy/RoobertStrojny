@@ -30,7 +30,7 @@ public class TaskManagement {
     }
 
     public void remove(String[] args) {
-        if (!error.checkIfIndexIsProvided(args, "remove")){
+        if (!error.checkIfIndexIsProvided(args, "remove")) {
             return;
         }
 
@@ -41,10 +41,7 @@ public class TaskManagement {
         int index = Integer.parseInt(args[1]) - 1;
         List<String> taskList = error.makeListAndCheckFileException();
 
-        try {
-            taskList.remove(index);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Unable to remove: index is out of bound");
+        if (!error.checkIfIndexIsOutOfBound(taskList, index, "remove")){
             return;
         }
 

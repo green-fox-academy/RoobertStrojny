@@ -43,10 +43,21 @@ public class ErrorHandling {
 
     public boolean checkIfIndexIsProvided(String[] args, String string) {
         if (args.length == 1) {
-            System.out.println("Unable to "+ string + ": no index provided");
+            System.out.println("Unable to " + string + ": no index provided");
             return false;
         }
         return true;
+    }
+
+    public boolean checkIfIndexIsOutOfBound(List<String> list, int index, String string) {
+        try {
+            String s = list.get(index);
+            return true;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Unable to " + string + ": index is out of bound");
+            return false;
+        }
+
     }
 
 
