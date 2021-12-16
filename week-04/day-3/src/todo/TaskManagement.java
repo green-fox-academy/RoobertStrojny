@@ -38,7 +38,7 @@ public class TaskManagement {
         int index = Integer.parseInt(args[1]) - 1;
         taskList = error.makeListAndCheckFileException();
 
-        if (!error.checkIfIndexIsOutOfBound(taskList, index, "remove")){
+        if (!error.checkIfIndexIsOutOfBound(taskList, index, "remove")) {
             return;
         }
 
@@ -58,20 +58,26 @@ public class TaskManagement {
         int index = Integer.parseInt(args[1]) - 1;
         taskList = error.makeListAndCheckFileException();
 
-        if (!error.checkIfIndexIsOutOfBound(taskList, index, "check")){
+        if (!error.checkIfIndexIsOutOfBound(taskList, index, "check")) {
             return;
         }
 
-            StringBuilder sb = new StringBuilder();
-            sb.append(taskList.get(index));
-            sb.replace(0, 3, "[x]");
+        StringBuilder sb = new StringBuilder();
+        checkTaskAndReplace(sb, index);
 
-            taskList.remove(index);
-            taskList.add(index, sb.toString());
-            error.writeToListAndCheckFileException(taskList);
-
+        taskList.remove(index);
+        taskList.add(index, sb.toString());
+        error.writeToListAndCheckFileException(taskList);
     }
 
-   
+    private void checkTaskAndReplace(StringBuilder sb, int index) {
+        sb.append(taskList.get(index));
+        char[] arrayOfString = sb.toString().toCharArray();
+        if (arrayOfString[1] == 'x') {
+            sb.replace(1, 2, " ");
+            return;
+        }
+        sb.replace(1, 2, "x");
+    }
 
 }
