@@ -18,7 +18,6 @@ public class TaskManagement {
                 number++;
             }
         }
-
     }
 
     public void add(String task) {
@@ -45,7 +44,6 @@ public class TaskManagement {
 
         taskList.remove(index);
         error.writeToListAndCheckFileException(taskList);
-
     }
 
     public void check(String[] args) {
@@ -68,11 +66,12 @@ public class TaskManagement {
             sb.append(taskList.get(index));
             sb.replace(0, 3, "[x]");
 
-
             taskList.remove(index);
             taskList.add(index, sb.toString());
             error.writeToListAndCheckFileException(taskList);
 
     }
+
+   
 
 }

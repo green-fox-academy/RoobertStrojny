@@ -1,11 +1,5 @@
 package todo;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-
 public class Input {
 
     public void handleInput(String[] args) {
@@ -63,7 +57,6 @@ public class Input {
         for (int i = 1; i < args.length; i++) {
             sb.append(args[i]).append(" ");
         }
-
         return sb.toString();
     }
 }
