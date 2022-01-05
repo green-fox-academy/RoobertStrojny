@@ -11,8 +11,7 @@ public class Tile {
     BufferedImage image;
     int width;
     int height;
-    boolean isEmpty;
-    Area area = new Area();
+    boolean isWall;
 
     public Tile(String filename) {
         try {
@@ -20,6 +19,7 @@ public class Tile {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         width = image.getWidth();
         height = image.getHeight();
 
