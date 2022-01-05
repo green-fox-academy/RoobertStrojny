@@ -4,7 +4,6 @@ package character;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -12,24 +11,30 @@ import java.io.IOException;
 public class Hero extends Character {
 
     BufferedImage image;
-    int posX;
-    int posY;
+    int imagePositionX;
+    int imagePositionY;
     int heroWidth;
     int heroHeight;
+    int posX;
+    int posY;
+    int[] positionOnMap;
 
 
     public Hero(String filename) {
         readImage(filename);
         heroWidth = image.getWidth();
         heroHeight = image.getHeight();
-        posY = 0;
+        imagePositionY = 0;
+        imagePositionX = 0;
         posX = 0;
+        posY = 0;
+        positionOnMap = new int[]{posX, posY};
 
     }
 
     public void draw(Graphics graphics) {
         if (image != null) {
-            graphics.drawImage(image, posX, posY, null);
+            graphics.drawImage(image, imagePositionX, imagePositionY, null);
         }
 
     }
@@ -42,19 +47,24 @@ public class Hero extends Character {
         return heroHeight;
     }
 
+
     public void move(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             readImage("img/hero-up.png");
-            posY -= getHeroHeight();
+            imagePositionY -= getHeroHeight();
+            posY -= 1;
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             readImage("img/hero-down.png");
-            posY += getHeroHeight();
+            imagePositionY += getHeroHeight();
+            posY += 1;
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             readImage("img/hero-left.png");
-            posX -= getHeroWidth();
+            imagePositionX -= getHeroWidth();
+            posX -= 1;
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             readImage("img/hero-right.png");
-            posX += getHeroWidth();
+            imagePositionX += getHeroWidth();
+            posX += 1;
         }
         draw(image.getGraphics());
     }

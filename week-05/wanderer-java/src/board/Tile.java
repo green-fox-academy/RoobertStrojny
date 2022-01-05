@@ -11,8 +11,8 @@ public class Tile {
     BufferedImage image;
     int width;
     int height;
-
-
+    boolean isEmpty;
+    Area area = new Area();
 
     public Tile(String filename) {
         try {
@@ -31,6 +31,10 @@ public class Tile {
         }
 
     }
+//
+//    public boolean isEmpty(Tile tile) {
+//        if ()
+//    }
 
     public int getWidth() {
         return width;
