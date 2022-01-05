@@ -11,7 +11,6 @@ public class Tile {
     BufferedImage image;
     int width;
     int height;
-    boolean isWall;
 
     public Tile(String filename) {
         try {

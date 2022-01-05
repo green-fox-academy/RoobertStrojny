@@ -12,7 +12,6 @@ public class Area {
             {0, 0, 0, 1, 0, 0, 1, 0, 0, 1},
             {0, 0, 0, 0, 0, 0, 1, 0, 0, 1}};
 
-    public void drawMap()
 
     public int[][] getMap() {
         return map;

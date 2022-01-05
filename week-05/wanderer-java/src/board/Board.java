@@ -13,6 +13,7 @@ public class Board extends JComponent implements KeyListener {
     Tile floor = new Tile("img/floor.png");
     Tile wall = new Tile("img/wall.png");
     Hero hero = new Hero("img/hero-down.png");
+    Floor floor1 = new Floor();
 
     public Board() {
         map = new int[][]{{0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
@@ -38,8 +39,10 @@ public class Board extends JComponent implements KeyListener {
         // here you have a 720x720 canvas
         // you can create and draw an image using the class below e.g.
 
-        drawMap(graphics);
-        hero.draw(graphics);
+        floor1.draw(0, 0, graphics);
+
+//        drawMap(graphics);
+//        hero.draw(graphics);
 
     }
 
