@@ -1,6 +1,7 @@
 package board;
 
 import character.Hero;
+import character.Skeleton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +12,7 @@ public class Board extends JComponent implements KeyListener {
 
     Hero hero = new Hero("img/hero-down.png");
     Tile tile = new Tile("img/floor.png", 0, 0);
+    Skeleton skeleton = new Skeleton();
     Area area = new Area();
 
     public Board() {
@@ -28,6 +30,7 @@ public class Board extends JComponent implements KeyListener {
         // you can create and draw an image using the class below e.g.
 
         area.drawMap(graphics);
+        skeleton.draw(graphics);
         hero.draw(graphics);
 
     }
