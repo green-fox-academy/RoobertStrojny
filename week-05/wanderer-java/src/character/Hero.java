@@ -21,6 +21,7 @@ public class Hero extends Character {
     int posX;
     int posY;
     int[] positionOnMap;
+    int[][] map = new Area().readMapTo2dArray();
 
 
     public Hero(String filename) {
@@ -52,53 +53,87 @@ public class Hero extends Character {
 
 
     public void move(KeyEvent e) {
-        Board board = new Board();
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             readImage("img/hero-up.png");
-            if (heroCanGoUp()) {
-                imagePositionY -= getHeroHeight();
-                posY -= 1;
-                System.out.println(posY);
+            if (!heroCanGoUp()) {
+                return;
             }
+            if (heroIsNearUpWall()) {
+                return;
+            }
+            imagePositionY -= getHeroHeight();
+            posY -= 1;
+            System.out.println(posY);
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             readImage("img/hero-down.png");
-            if (heroCanGoDown()) {
-                imagePositionY += getHeroHeight();
-                posY += 1;
-                System.out.println(posY);
+            if (!heroCanGoDown()) {
+                return;
             }
+            if (heroIsNearDownWall()) {
+                return;
+            }
+            imagePositionY += getHeroHeight();
+            posY += 1;
+            System.out.println(posY);
+
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             readImage("img/hero-left.png");
-            if (heroCanGoLeft()) {
-                imagePositionX -= getHeroWidth();
-                posX -= 1;
-                System.out.println(posX);
+            if (!heroCanGoLeft()) {
+                return;
             }
+            if (heroIsNearLeftWall()) {
+                return;
+            }
+            imagePositionX -= getHeroWidth();
+            posX -= 1;
+            System.out.println(posX);
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             readImage("img/hero-right.png");
-            if (heroCanGoRight()) {
-                imagePositionX += getHeroWidth();
-                posX += 1;
-                System.out.println(posX);
+            if (!heroCanGoRight()) {
+                return;
             }
+            if (heroIsNearRightWall()) {
+                return;
+            }
+            imagePositionX += getHeroWidth();
+            posX += 1;
+            System.out.println(posX);
         }
-        draw(image.getGraphics());
+
+    draw(image.getGraphics());
+}
+
+    public boolean heroIsNearUpWall() {
+        return map[posY - 1][posX] != 0;
+    }
+
+
+    public boolean heroIsNearDownWall() {
+        return map[posY + 1][posX] != 0;
+    }
+
+    public boolean heroIsNearLeftWall() {
+        return map[posY][posX - 1] != 0;
+    }
+
+    public boolean heroIsNearRightWall() {
+        return map[posY][posX + 1] != 0;
     }
 
     public boolean heroCanGoUp() {
-        return posY != 0;
+        return posY > 0;
     }
 
     public boolean heroCanGoDown() {
-        return posY != 9;
+        return posY < map.length - 1;
     }
 
     public boolean heroCanGoLeft() {
-        return posX != 0;
+        return posX > 0;
     }
 
     public boolean heroCanGoRight() {
-        return posX != 9;
+        return posX < map.length - 1;
     }
 
     private void readImage(String filename) {

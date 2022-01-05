@@ -48,26 +48,6 @@ public class Board extends JComponent implements KeyListener {
         // because this Board class (the type of the board object) is also a KeyListener
     }
 
-    public boolean heroCanGoDown() {
-        if (hero.getPosY() > 8) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean heroCanGoLeft() {
-        if (hero.getPosX() < 1) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean heroCanGoRight() {
-        if (hero.getPosX() > 8) {
-            return false;
-        }
-        return true;
-    }
 
     // To be a KeyListener the class needs to have these 3 methods in it
     @Override
