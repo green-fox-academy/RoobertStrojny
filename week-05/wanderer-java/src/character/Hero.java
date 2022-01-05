@@ -1,6 +1,9 @@
 package character;
 
 
+import board.Area;
+import board.Board;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -49,24 +52,53 @@ public class Hero extends Character {
 
 
     public void move(KeyEvent e) {
+        Board board = new Board();
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             readImage("img/hero-up.png");
-            imagePositionY -= getHeroHeight();
-            posY -= 1;
+            if (heroCanGoUp()) {
+                imagePositionY -= getHeroHeight();
+                posY -= 1;
+                System.out.println(posY);
+            }
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             readImage("img/hero-down.png");
-            imagePositionY += getHeroHeight();
-            posY += 1;
+            if (heroCanGoDown()) {
+                imagePositionY += getHeroHeight();
+                posY += 1;
+                System.out.println(posY);
+            }
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             readImage("img/hero-left.png");
-            imagePositionX -= getHeroWidth();
-            posX -= 1;
+            if (heroCanGoLeft()) {
+                imagePositionX -= getHeroWidth();
+                posX -= 1;
+                System.out.println(posX);
+            }
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             readImage("img/hero-right.png");
-            imagePositionX += getHeroWidth();
-            posX += 1;
+            if (heroCanGoRight()) {
+                imagePositionX += getHeroWidth();
+                posX += 1;
+                System.out.println(posX);
+            }
         }
         draw(image.getGraphics());
+    }
+
+    public boolean heroCanGoUp() {
+        return posY != 0;
+    }
+
+    public boolean heroCanGoDown() {
+        return posY != 9;
+    }
+
+    public boolean heroCanGoLeft() {
+        return posX != 0;
+    }
+
+    public boolean heroCanGoRight() {
+        return posX != 9;
     }
 
     private void readImage(String filename) {
@@ -77,5 +109,15 @@ public class Hero extends Character {
         }
     }
 
+    public int getPosX() {
+        return posX;
+    }
 
+    public int getPosY() {
+        return posY;
+    }
+
+    public int[] getPositionOnMap() {
+        return positionOnMap;
+    }
 }

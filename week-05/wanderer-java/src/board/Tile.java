@@ -9,16 +9,19 @@ import java.io.IOException;
 public class Tile {
 
     BufferedImage image;
+    int posX;
+    int posY;
     int width;
     int height;
 
-    public Tile(String filename) {
+    public Tile(String filename, int posX, int posY) {
         try {
             image = ImageIO.read(new File(filename));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        this.posX = posX;
+        this.posY = posY;
         width = image.getWidth();
         height = image.getHeight();
 
@@ -36,11 +39,11 @@ public class Tile {
 //    }
 
     public int getWidth() {
-        return width;
+        return image.getWidth();
     }
 
     public int getHeight() {
-        return height;
+        return image.getHeight();
     }
 
 }

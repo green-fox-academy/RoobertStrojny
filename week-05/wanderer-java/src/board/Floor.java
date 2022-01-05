@@ -2,11 +2,8 @@ package board;
 
 public class Floor extends Tile{
 
-    public Floor() {
-        super("img/floor.png");
+
+    public Floor(int posX, int posY) {
+        super("img/floor.png", posX, posY);
     }
-
-
-
-
 }
