@@ -11,8 +11,26 @@ public class StreamUtils {
 //        averageOfOddNumbers();
 //        sumOfOddNumbers();
 //        uppercaseCharacters();
-        startsWithCharacter('R');
-        startsWithCharacter('N');
+//        startsWithCharacter('R');
+//        startsWithCharacter('N');
+        concatList();
+    }
+
+    private static String concatList() {
+
+        List<Character> characters = Arrays.asList('L', 'o', 'r', 'e', 'm', ' ', 'i', 'p', 's', 'u', 'm');
+
+        String output = characters.stream()
+                .map(c -> c.toString())
+                .collect(Collectors.joining())
+                ;
+
+        System.out.println(output);
+
+        String expectedOutput = "Lorem ipsum";
+
+        System.out.println(expectedOutput);
+        return output;
     }
 
     private static List<String> startsWithCharacter(char ch) {
