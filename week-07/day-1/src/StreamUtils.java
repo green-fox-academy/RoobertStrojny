@@ -40,26 +40,42 @@ public class StreamUtils {
 //        getMostCommonWords();
         Path path = Paths.get("swcharacters.csv");
         getHeaviestCharacter(path);
+        getAverageHeightOfMales(path);
+    }
+
+    private static void getAverageHeightOfMales(Path path) {
+        List<String> lines = getListFromFile(path);
+
+        Double height = lines.stream()
+                .map(line -> line.split(";"))
+                .filter(line -> line[7].equals("male") && line[1].matches("\\d+"))
+                .collect(Collectors.averagingDouble(line -> Double.parseDouble(line[1])));
+
+        System.out.println(height);
+
     }
 
     private static String getHeaviestCharacter(Path path) {
+        List<String> lines = getListFromFile(path);
+
+        Map<String, Double> map = lines.stream()
+                .map(line -> line.split(";"))
+                .collect(Collectors.toMap(line -> line[0], line -> line[2].matches("\\d+") ? Double.parseDouble(line[2]) : 0));
+
+        String s = Collections.max(map.entrySet(), Map.Entry.comparingByValue()).getKey();
+
+        System.out.println(s);
+        return s;
+    }
+
+    public static List<String> getListFromFile(Path path) {
         List<String> lines = new ArrayList<>();
         try {
             lines = Files.readAllLines(path);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        Map<String, Double> map = lines.stream()
-                .map(line -> line.split(";"))
-                .collect(Collectors.toMap(line -> line[0], line -> line[2].matches("\\d+") ? Double.parseDouble(line[2]) : 0))
-                ;
-
-        String s = Collections.max(map.entrySet(), Map.Entry.comparingByValue()).getKey();
-        
-        System.out.println(s);
-        return s;
+        return lines;
     }
 
     private static Map<String, Long> getMostCommonWords() {
