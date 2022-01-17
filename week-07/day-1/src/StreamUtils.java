@@ -1,6 +1,5 @@
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class StreamUtils {
@@ -10,7 +9,25 @@ public class StreamUtils {
 //        squareNumbers();
 //        squareIsGreaterThen20();
 //        averageOfOddNumbers();
-        sumOfOddNumbers();
+//        sumOfOddNumbers();
+        uppercaseCharacters();
+    }
+
+    private static List<Character> uppercaseCharacters() {
+        String s = "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Morbi nec mattis odio.";
+
+        List<Character> list = s.chars()
+                .mapToObj(c -> (char)c)
+                .filter(Character::isUpperCase)
+                .collect(Collectors.toList());
+
+        System.out.println(list);
+
+        List<Character> expectedOutput = Arrays.asList('L', 'I', 'D', 'S', 'A', 'C', 'A', 'E', 'M');
+
+        System.out.println(expectedOutput);
+
+        return list;
     }
 
     private static int sumOfOddNumbers() {
