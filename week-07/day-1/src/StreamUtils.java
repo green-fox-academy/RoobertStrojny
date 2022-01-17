@@ -1,5 +1,8 @@
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class StreamUtils {
@@ -13,7 +16,22 @@ public class StreamUtils {
 //        uppercaseCharacters();
 //        startsWithCharacter('R');
 //        startsWithCharacter('N');
-        concatList();
+//        concatList();
+        frequencyOfCharacters();
+    }
+
+    private static Map<Character, Long> frequencyOfCharacters() {
+        String s = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.";
+
+        Map<Character, Long> map = s.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                ;
+
+        System.out.println(map);
+
+        return map;
+
     }
 
     private static String concatList() {
@@ -22,8 +40,7 @@ public class StreamUtils {
 
         String output = characters.stream()
                 .map(c -> c.toString())
-                .collect(Collectors.joining())
-                ;
+                .collect(Collectors.joining());
 
         System.out.println(output);
 
