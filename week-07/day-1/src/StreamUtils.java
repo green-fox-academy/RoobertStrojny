@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -34,8 +36,30 @@ public class StreamUtils {
 //        greenColorFoxes(foxes);
 //        greenColorAndYoungerThen5(foxes);
 //        colorMapOfFoxes(foxes);
-        getWordFrequency("wikipedia.txt");
-        getMostCommonWords();
+//        getWordFrequency("wikipedia.txt");
+//        getMostCommonWords();
+        Path path = Paths.get("swcharacters.csv");
+        getHeaviestCharacter(path);
+    }
+
+    private static String getHeaviestCharacter(Path path) {
+        List<String> lines = new ArrayList<>();
+        try {
+            lines = Files.readAllLines(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        Map<String, Double> map = lines.stream()
+                .map(line -> line.split(";"))
+                .collect(Collectors.toMap(line -> line[0], line -> line[2].matches("\\d+") ? Double.parseDouble(line[2]) : 0))
+                ;
+
+        String s = Collections.max(map.entrySet(), Map.Entry.comparingByValue()).getKey();
+        
+        System.out.println(s);
+        return s;
     }
 
     private static Map<String, Long> getMostCommonWords() {
@@ -85,8 +109,7 @@ public class StreamUtils {
 
         List<Fox> output = foxes.stream()
                 .filter(fox -> fox.getColor() == "GREEN")
-                .collect(Collectors.toList())
-                ;
+                .collect(Collectors.toList());
 
         System.out.println(output);
     }
@@ -96,8 +119,7 @@ public class StreamUtils {
 
         Map<Character, Long> map = s.chars()
                 .mapToObj(c -> (char) c)
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
-                ;
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
         System.out.println(map);
 
