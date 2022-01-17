@@ -1,9 +1,12 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamUtils {
 
@@ -18,19 +21,50 @@ public class StreamUtils {
 //        startsWithCharacter('N');
 //        concatList();
 //        frequencyOfCharacters();
-        List<Fox> foxes = Arrays.asList(new Fox("Arnold", "WHITE", 5),
-                new Fox("Arthur", "BLACK", 4),
-                new Fox("Bnjsas", "GREEN", 9),
-                new Fox("Bajds", "WHITE", 7),
-                new Fox("Grieaa", "GREEN", 3),
-                new Fox("Mfaidn", "YELLOW", 4),
-                new Fox("Nasknd", "BROWN", 3),
-                new Fox("Coasjd", "BLACK", 4),
-                new Fox("Fnasid", "BLACK", 7)
-                );
-        greenColorFoxes(foxes);
-        greenColorAndYoungerThen5(foxes);
-        colorMapOfFoxes(foxes);
+//        List<Fox> foxes = Arrays.asList(new Fox("Arnold", "WHITE", 5),
+//                new Fox("Arthur", "BLACK", 4),
+//                new Fox("Bnjsas", "GREEN", 9),
+//                new Fox("Bajds", "WHITE", 7),
+//                new Fox("Grieaa", "GREEN", 3),
+//                new Fox("Mfaidn", "YELLOW", 4),
+//                new Fox("Nasknd", "BROWN", 3),
+//                new Fox("Coasjd", "BLACK", 4),
+//                new Fox("Fnasid", "BLACK", 7)
+//                );
+//        greenColorFoxes(foxes);
+//        greenColorAndYoungerThen5(foxes);
+//        colorMapOfFoxes(foxes);
+        getWordFrequency("wikipedia.txt");
+        getMostCommonWords();
+    }
+
+    private static Map<String, Long> getMostCommonWords() {
+
+        Map<String, Long> map = getWordFrequency("wikipedia.txt")
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+        System.out.println(map);
+
+        return map;
+    }
+
+    private static Map<String, Long> getWordFrequency(String s) {
+        Path path = Paths.get(s);
+        List<String> words = new ArrayList<>();
+        try {
+            words = List.of(Files.readString(path, StandardCharsets.UTF_8).split("[\\p{Punct}\\s]+"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Map<String, Long> wordsMap = words.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        System.out.println(wordsMap);
+        return wordsMap;
     }
 
     private static Map<String, Long> colorMapOfFoxes(List<Fox> foxes) {
