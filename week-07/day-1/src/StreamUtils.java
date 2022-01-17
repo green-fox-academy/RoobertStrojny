@@ -17,7 +17,44 @@ public class StreamUtils {
 //        startsWithCharacter('R');
 //        startsWithCharacter('N');
 //        concatList();
-        frequencyOfCharacters();
+//        frequencyOfCharacters();
+        List<Fox> foxes = Arrays.asList(new Fox("Arnold", "WHITE", 5),
+                new Fox("Arthur", "BLACK", 4),
+                new Fox("Bnjsas", "GREEN", 9),
+                new Fox("Bajds", "WHITE", 7),
+                new Fox("Grieaa", "GREEN", 3),
+                new Fox("Mfaidn", "YELLOW", 4),
+                new Fox("Nasknd", "BROWN", 3),
+                new Fox("Coasjd", "BLACK", 4),
+                new Fox("Fnasid", "BLACK", 7)
+                );
+        greenColorFoxes(foxes);
+        greenColorAndYoungerThen5(foxes);
+        colorMapOfFoxes(foxes);
+    }
+
+    private static Map<String, Long> colorMapOfFoxes(List<Fox> foxes) {
+        Map<String, Long> count = foxes.stream()
+                .collect(Collectors.groupingBy(Fox::getColor, Collectors.counting()));
+        System.out.println(count);
+        return count;
+    }
+
+    private static void greenColorAndYoungerThen5(List<Fox> foxes) {
+        List<Fox> output = foxes.stream()
+                .filter(fox -> fox.getAge() < 5 && fox.getColor() == "GREEN")
+                .collect(Collectors.toList());
+        System.out.println(output);
+    }
+
+    private static void greenColorFoxes(List<Fox> foxes) {
+
+        List<Fox> output = foxes.stream()
+                .filter(fox -> fox.getColor() == "GREEN")
+                .collect(Collectors.toList())
+                ;
+
+        System.out.println(output);
     }
 
     private static Map<Character, Long> frequencyOfCharacters() {
