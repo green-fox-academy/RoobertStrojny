@@ -7,7 +7,22 @@ public class Exercise {
 
     public static void main(String[] args) {
 //        evenNumbers();
-        squareNumbers();
+//        squareNumbers();
+        squareIsGreaterThen20();
+    }
+
+    private static List<Integer> squareIsGreaterThen20() {
+        List<Integer> numbers = Arrays.asList(3, 9, 2, 8, 6, 5);
+        List<Integer> output = numbers.stream()
+                .filter(n -> (n * n) > 20)
+                .collect(Collectors.toList());
+
+        System.out.println(output);
+
+        List<Integer> expectedOutput = Arrays.asList(9, 8, 6, 5);
+        System.out.println(expectedOutput);
+
+        return output;
     }
 
     private static List<Integer> squareNumbers() {
