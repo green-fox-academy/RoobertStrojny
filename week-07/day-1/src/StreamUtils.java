@@ -3,12 +3,28 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Exercise {
+public class StreamUtils {
 
     public static void main(String[] args) {
 //        evenNumbers();
 //        squareNumbers();
-        squareIsGreaterThen20();
+//        squareIsGreaterThen20();
+        averageOfOddNumbers();
+    }
+
+    private static double averageOfOddNumbers() {
+        List<Integer> numbers = Arrays.asList(1, 3, -2, -4, -7, -3, -8, 12, 19, 6, 9, 10, 14);
+
+        double output = numbers.stream()
+                .filter(n -> n % 2 != 0)
+                .reduce(0, Integer::sum)
+                .doubleValue() / numbers.stream().filter(n -> n % 2 != 0).count();
+
+        System.out.println(output);
+
+        double expectedOutput = 22.0 / 6.0;
+        System.out.println(expectedOutput);
+        return output;
     }
 
     private static List<Integer> squareIsGreaterThen20() {
