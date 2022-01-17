@@ -10,14 +10,32 @@ public class StreamUtils {
 //        squareIsGreaterThen20();
 //        averageOfOddNumbers();
 //        sumOfOddNumbers();
-        uppercaseCharacters();
+//        uppercaseCharacters();
+        startsWithCharacter('R');
+        startsWithCharacter('N');
+    }
+
+    private static List<String> startsWithCharacter(char ch) {
+        List<String> cities = Arrays.asList("ROME", "LONDON", "NAIROBI", "CALIFORNIA", "ZURICH", "NEW DELHI", "AMSTERDAM", "ABU DHABI", "PARIS");
+
+        List<String> output = cities.stream()
+                .filter(s -> s.startsWith(String.valueOf(ch)))
+                .collect(Collectors.toList());
+
+        System.out.println(output);
+
+        List<String> expectedOutput;
+        expectedOutput = Arrays.asList("ROME"); // for 'R'
+        expectedOutput = Arrays.asList("NAIROBI", "NEW DELHI"); // for 'N'
+
+        return output;
     }
 
     private static List<Character> uppercaseCharacters() {
         String s = "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Morbi nec mattis odio.";
 
         List<Character> list = s.chars()
-                .mapToObj(c -> (char)c)
+                .mapToObj(c -> (char) c)
                 .filter(Character::isUpperCase)
                 .collect(Collectors.toList());
 
@@ -36,8 +54,7 @@ public class StreamUtils {
 
         int output = numbers.stream()
                 .filter(n -> n % 2 != 0)
-                .reduce(0, Integer::sum)
-                ;
+                .reduce(0, Integer::sum);
 
         System.out.println(output);
 
