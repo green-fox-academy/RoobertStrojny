@@ -1,0 +1,76 @@
+body {
+    background-color: darkgrey;
+}
+
+table {
+    border: #1a1a1a solid 1px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px 10px;
+    margin: auto;
+}
+
+td, th {
+    border: #1a1a1a hidden 1px;
+    padding: 5px 10px;
+}
+
+th {
+    color: #404040;
+    font-size: 35px;
+    font-style: normal;
+    font-family: Calibri, serif;
+    text-align: left;
+}
+
+input {
+    border: #404040 hidden 1px;
+    border-bottom: #404040 solid 2px;
+    height: 50px;
+    width: 250px;
+}
+
+.username {
+    border-bottom: forestgreen solid 2px;
+}
+
+.or {
+    height: 40px;
+    width: 40px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    border: #404040 outset 1px;
+    border-radius: 50%; /* may require vendor prefixes */
+    background: grey;
+}
+
+button {
+    background-color: forestgreen;
+    width: 170px;
+    height: 35px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: auto;
+}
+
+#facebook {
+    background-color: blue;
+    width: 250px;
+}
+
+#twitter {
+    background-color: lightskyblue;
+    width: 250px;
+}
+
+#google {
+    background-color: red;
+    width: 250px;
+}
