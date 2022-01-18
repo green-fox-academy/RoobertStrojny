@@ -1,5 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -8,7 +6,6 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StreamUtils {
 
@@ -41,9 +38,24 @@ public class StreamUtils {
         Path path = Paths.get("swcharacters.csv");
         getHeaviestCharacter(path);
         getAverageHeightOfMales(path);
+        getAverageHeightOfFemales(path);
+        
     }
 
-    private static void getAverageHeightOfMales(Path path) {
+    private static Double getAverageHeightOfFemales(Path path) {
+        List<String> lines = getListFromFile(path);
+
+        Double height = lines.stream()
+                .map(line -> line.split(";"))
+                .filter(line -> line[7].equals("female") && line[1].matches("\\d+"))
+                .collect(Collectors.averagingDouble(line -> Double.parseDouble(line[1])));
+
+        System.out.println(height);
+
+        return height;
+    }
+
+    private static Double getAverageHeightOfMales(Path path) {
         List<String> lines = getListFromFile(path);
 
         Double height = lines.stream()
@@ -52,6 +64,8 @@ public class StreamUtils {
                 .collect(Collectors.averagingDouble(line -> Double.parseDouble(line[1])));
 
         System.out.println(height);
+
+        return height;
 
     }
 
