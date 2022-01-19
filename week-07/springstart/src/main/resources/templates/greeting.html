@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Material Review</title>
+    <style>
+        .text-green {
+            color: darkolivegreen;
+        }
+    </style>
+</head>
+<body>
+<h1 class="text-green" style="text-decoration: underline" th:text="${'Hello: ' + name + '! This site was loaded ' + count + ' times since last server start.'}"></h1>
+</body>
+</html>

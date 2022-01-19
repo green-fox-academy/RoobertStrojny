@@ -7,9 +7,9 @@ public class Greeting {
     private String content;
     private final AtomicLong atomicLong;
 
-    public Greeting(String content) {
+    public Greeting() {
         this.greetCount = 0;
-        this.content = content;
+        this.content = "Hello World!";
         atomicLong = new AtomicLong(0);
     }
 
@@ -22,5 +22,7 @@ public class Greeting {
         this.content = content;
     }
 
-
+    public long getGreetCount() {
+        return greetCount;
+    }
 }
