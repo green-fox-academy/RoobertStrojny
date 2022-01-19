@@ -1,19 +1,26 @@
 package com.greenfoxacademy.springstart;
 
-public class Greeting {
-    private final long id;
-    private final String content;
+import java.util.concurrent.atomic.AtomicLong;
 
-    public Greeting(long id, String content) {
-        this.id = id;
+public class Greeting {
+    private long greetCount;
+    private String content;
+    private final AtomicLong atomicLong;
+
+    public Greeting(String content) {
+        this.greetCount = 0;
+        this.content = content;
+        atomicLong = new AtomicLong(0);
+    }
+
+    public long count() {
+        greetCount = atomicLong.get();
+        return atomicLong.incrementAndGet();
+    }
+
+    public void setContent(String content) {
         this.content = content;
     }
 
-    public long getId() {
-        return id;
-    }
 
-    public String getContent() {
-        return content;
-    }
 }
