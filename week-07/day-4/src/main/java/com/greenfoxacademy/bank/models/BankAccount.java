@@ -1,9 +1,13 @@
 package com.greenfoxacademy.bank.models;
 
+import java.util.Comparator;
+import java.util.List;
+
 public class BankAccount {
     private final String name;
     private double balance;
     private final String animalType;
+    private boolean isKing;
 
     public BankAccount(String name, double balance, String animalType) {
         this.name = name;
@@ -29,5 +33,13 @@ public class BankAccount {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public boolean isKing() {
+        return isKing;
+    }
+
+    public void setKing(boolean king) {
+        isKing = king;
     }
 }
