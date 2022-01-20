@@ -1,12 +1,10 @@
 package com.greenfoxacademy.bank.controllers;
 
-import com.greenfoxacademy.bank.BankAccount;
+import com.greenfoxacademy.bank.models.BankAccount;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +28,7 @@ public class BankController {
     }
 
     @GetMapping("/string")
-    @ResponseBody
     public String showString(){
-        return "";
+        return "string";
     }
 }

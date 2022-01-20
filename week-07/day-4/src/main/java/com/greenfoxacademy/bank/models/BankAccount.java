@@ -1,9 +1,9 @@
-package com.greenfoxacademy.bank;
+package com.greenfoxacademy.bank.models;
 
 public class BankAccount {
-    private String name;
+    private final String name;
     private double balance;
-    private String animalType;
+    private final String animalType;
 
     public BankAccount(String name, double balance, String animalType) {
         this.name = name;
@@ -25,5 +25,9 @@ public class BankAccount {
 
     public String getAnimalType() {
         return animalType;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }
