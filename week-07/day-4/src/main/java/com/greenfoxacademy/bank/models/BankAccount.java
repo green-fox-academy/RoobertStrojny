@@ -8,11 +8,13 @@ public class BankAccount {
     private double balance;
     private final String animalType;
     private boolean isKing;
+    private final boolean isGoodGuy;
 
-    public BankAccount(String name, double balance, String animalType) {
+    public BankAccount(String name, double balance, String animalType, boolean isGoodGuy) {
         this.name = name;
         this.balance = balance;
         this.animalType = animalType;
+        this.isGoodGuy = isGoodGuy;
     }
 
     public String getTwoDecimalBalance() {
@@ -41,5 +43,9 @@ public class BankAccount {
 
     public void setKing(boolean king) {
         isKing = king;
+    }
+
+    public boolean isGoodGuy() {
+        return isGoodGuy;
     }
 }

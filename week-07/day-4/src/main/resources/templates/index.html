@@ -6,20 +6,31 @@
 </head>
 <body>
 <table>
-    <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Balance</th>
-        <th>Type</th>
-        <th>King</th>
-    </tr>
-    <tr th:each="account, status : ${account}">
-        <td th:text="${status.index + 1}"></td>
-        <td th:text="${account.getName()}"></td>
-        <td th:text="${account.getTwoDecimalBalance()}"></td>
-        <td th:text="${account.getAnimalType()}"></td>
-        <td th:if="${account.isKing()}"><p style="color: gold">KING</p></td>
-    </tr>
+    <form th:action="${'/bank/show'}" th:method="put" novalidate>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Balance</th>
+            <th>Type</th>
+            <th>Owner</th>
+            <th>Good or bad</th>
+            <th>Increase your balance</th>
+        </tr>
+        <tr th:each="account, status : ${accounts}">
+            <td th:text="${status.index + 1}"></td>
+            <td th:text="${account.getName()}"></td>
+            <td th:text="${account.getTwoDecimalBalance()}"></td>
+            <td th:text="${account.getAnimalType()}"></td>
+            <td><p th:if="${account.isKing()}" style="color: gold">KING</p></td>
+            <td>
+                <p th:if="${account.isGoodGuy() && account.isKing()}">Good guy</p>
+                <p th:if="${!account.isGoodGuy() && account.isKing()}">Bad guy</p>
+            </td>
+            <td>
+                <button type="button" name="add" th:text=""></button>
+            </td>
+        </tr>
+    </form>
 </table>
 
 </body>
