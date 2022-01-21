@@ -22,20 +22,7 @@
 </div>
 
 <div class="table">
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Quantity of stock</th>
-        </tr>
-        <tr th:each="item : ${items}">
-            <td th:text="${item.getName()}"></td>
-            <td th:text="${item.getDescription()}"></td>
-            <td style="text-align: center" th:text="${item.getPrice()} + ' KČ'"></td>
-            <td style="text-align: center" th:text="${item.getQuantityOfStock()}"></td>
-        </tr>
-    </table>
+    <h1 th:text="${string}"></h1>
 </div>
 
 </body>

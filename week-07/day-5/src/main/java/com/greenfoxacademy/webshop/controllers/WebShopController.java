@@ -46,6 +46,24 @@ public class WebShopController {
         return "index";
     }
 
+    @GetMapping("average-stock")
+    public String averageStock(Model model) {
+        double averageValue = addItems().stream().mapToDouble(ShopItem::getQuantityOfStock).average().getAsDouble();
+        String average = "Average stock : " + averageValue;
+        model.addAttribute("string", average);
+        return "stock";
+    }
+
+    @GetMapping("most-expensive")
+    public String mostExpensive(Model model) {
+        String mostExpensive = "Most expensive item : " + addItems().stream()
+                .max(Comparator.comparingDouble(ShopItem::getPrice))
+                .get()
+                .getName();
+        model.addAttribute("string", mostExpensive);
+        return "stock";
+    }
+
     private List<ShopItem> addItems() {
         List<ShopItem> items = new ArrayList<>();
         items.add(new ShopItem("Running shoes", "Nike running shoes for every day sport", 1000.0, 5));
