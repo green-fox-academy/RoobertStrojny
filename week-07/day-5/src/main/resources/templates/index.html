@@ -12,13 +12,30 @@
 </div>
 <div class="navigation">
     <ul>
-        <li><a class="active" href="#home">Home</a></li>
-        <li><a href="#news">ONLY AVAILABLE</a></li>
-        <li><a href="#contact">CHEAPEST FIRST</a></li>
-        <li><a href="#about">CONTAINS NIKE</a></li>
+        <li><a th:href="@{'/webshop'}">Home</a></li>
+        <li><a th:href="@{'/only-available'}">ONLY AVAILABLE</a></li>
+        <li><a th:href="@{'/cheapest-first'}">CHEAPEST FIRST</a></li>
+        <li><a th:href="@{'/contains-nike'}">CONTAINS NIKE</a></li>
         <li><a href="#about">AVERAGE STOCK</a></li>
         <li><a href="#about">MOST EXPENSIVE AVAILABLE</a></li>
     </ul>
+</div>
+
+<div class="table">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity of stock</th>
+        </tr>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.getName()}"></td>
+            <td th:text="${item.getDescription()}"></td>
+            <td style="text-align: center" th:text="${item.getPrice()}"></td>
+            <td style="text-align: center" th:text="${item.getQuantityOfStock()}"></td>
+        </tr>
+    </table>
 </div>
 
 </body>

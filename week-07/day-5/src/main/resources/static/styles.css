@@ -50,3 +50,35 @@ li a:hover {
     padding: 0 15px;
     text-align: center;
 }
+
+table {
+    border: forestgreen solid 1px;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: forestgreen;
+    border: lightskyblue 2px solid;
+    width: 150px;
+    height: 50px;
+    margin: auto;
+    padding: 5px 5px;
+    text-align: center;
+    font-style: italic;
+    font-family: "Script MT Bold", serif;
+    font-size: 24px;
+}
+
+td {
+    padding: 5px 5px;
+    border: forestgreen hidden 1px;
+    border-collapse: collapse;
+    font-style: normal;
+    font-family: "Script MT Bold", serif;
+    font-size: 20px;
+}
+
+.table {
+    padding: 15px 15px;
+    text-align: left;
+}
