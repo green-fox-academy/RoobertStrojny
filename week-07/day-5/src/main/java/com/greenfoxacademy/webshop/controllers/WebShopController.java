@@ -16,9 +16,8 @@ public class WebShopController {
     List<ShopItem> items = new ArrayList<>();
 
     @GetMapping("/webshop")
-    @ResponseBody
     public String index(){
-        return "Hello World";
+        return "index";
     }
 
     private void addItems() {
