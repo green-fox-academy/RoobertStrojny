@@ -3,8 +3,8 @@ package com.greenfoxacademy.bank.controllers;
 import com.greenfoxacademy.bank.models.BankAccount;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -37,6 +37,13 @@ public class BankController {
     public String showString(){
         return "string";
     }
+
+    @PostMapping("/show")
+    public String put(Model model) {
+        model.addAttribute("accounts", getBankAccounts());
+        return "index";
+    }
+
 
     public void setNewKing(List<BankAccount> accountList) {
         BankAccount max = accountList.stream()

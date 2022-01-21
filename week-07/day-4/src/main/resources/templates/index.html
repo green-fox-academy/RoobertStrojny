@@ -27,7 +27,8 @@
                 <p th:if="${!account.isGoodGuy() && account.isKing()}">Bad guy</p>
             </td>
             <td>
-                <button type="button" name="add" th:text=""></button>
+                <button type="submit" name="add" th:if="${account.isKing()}" th:value="${account.setBalance()}">+100</button>
+                <button type="submit" name="add" th:if="${!account.isKing()}" th:value="${account.setBalance()}">+10</button>
             </td>
         </tr>
     </form>

@@ -33,9 +33,13 @@ public class BankAccount {
         return animalType;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
+    public void setBalance() {
+        if (isKing) {
+            this.balance += 100;
+        } else {
+            this.balance += 10;
+        }
+     }
 
     public boolean isKing() {
         return isKing;
