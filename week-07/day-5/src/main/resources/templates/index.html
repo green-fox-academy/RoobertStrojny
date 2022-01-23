@@ -21,6 +21,19 @@
     </ul>
 </div>
 
+<div class="search">
+    <form action="" th:action="@{'/search'}" method="post">
+        <table>
+            <tr>
+                <th>Search for:</th>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Something like Nike..." name="searchString"><input type="submit" value="Search"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
 <div class="table">
     <table>
         <tr>

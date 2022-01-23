@@ -1,21 +1,20 @@
 package com.greenfoxacademy.webshop.controllers;
 
 import com.greenfoxacademy.webshop.models.ShopItem;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("")
 public class WebShopController {
-
-    List<ShopItem> items;
 
     @GetMapping("/webshop")
     public String index(Model model) {
@@ -62,6 +61,15 @@ public class WebShopController {
                 .getName();
         model.addAttribute("string", mostExpensive);
         return "stock";
+    }
+
+    @PostMapping("/search")
+    public String search(Model model, @RequestParam(name = "searchString") String searchString){
+        List<ShopItem> search = addItems().stream()
+                .filter(n -> n.getDescription().toLowerCase(Locale.ROOT).contains(searchString.toLowerCase(Locale.ROOT)))
+                .collect(Collectors.toList());
+        model.addAttribute("items", search);
+        return "index";
     }
 
     private List<ShopItem> addItems() {
