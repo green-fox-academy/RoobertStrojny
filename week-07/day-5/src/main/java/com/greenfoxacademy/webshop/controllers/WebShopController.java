@@ -68,6 +68,15 @@ public class WebShopController {
         List<ShopItem> search = addItems().stream()
                 .filter(n -> n.getDescription().toLowerCase(Locale.ROOT).contains(searchString.toLowerCase(Locale.ROOT)))
                 .collect(Collectors.toList());
+        if (search.size() > 0) {
+            model.addAttribute("items", search);
+            return "index";
+        }
+
+        search = addItems().stream()
+                .filter(n -> n.getName().toLowerCase(Locale.ROOT).contains(searchString.toLowerCase(Locale.ROOT)))
+                .collect(Collectors.toList());
+
         model.addAttribute("items", search);
         return "index";
     }
