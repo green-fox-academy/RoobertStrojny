@@ -5,8 +5,11 @@
     <title>Greenfox</title>
 </head>
 <body>
+<header th:text="${count}">
+</header>
 <a th:href="'gfa/list'"><h1>List of students</h1></a>
 <a th:href="'gfa/add'"><h1>Add new student</h1></a>
+<a th:href="'gfa/check?name=Vladimir'"><h1>Check on student</h1></a>
 
 </body>
 </html>

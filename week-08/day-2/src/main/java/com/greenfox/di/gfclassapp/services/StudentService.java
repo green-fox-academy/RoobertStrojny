@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class StudentService {
-    private List<String> names;
+
+public class StudentService implements StudentInterface{
+    private final List<String> names;
 
     public StudentService() {
         names = new ArrayList<>();
@@ -16,10 +16,22 @@ public class StudentService {
         names.add("John");
     }
 
+    @Override
+    public boolean check(String name) {
+        return names.stream().anyMatch(student -> student.equalsIgnoreCase(name));
+    }
+
+    @Override
+    public String count() {
+        return String.valueOf(names.size());
+    }
+
+    @Override
     public List<String> findAll() {
         return names;
     }
 
+    @Override
     public void save(String student) {
         names.add(student);
     }
