@@ -1,7 +1,6 @@
 package com.greenfoxacademy.webshop.controllers;
 
 import com.greenfoxacademy.webshop.models.ShopItem;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
