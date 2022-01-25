@@ -4,8 +4,7 @@ import com.greenfox.di.gfclassapp.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("")
@@ -18,13 +17,24 @@ public class GreenfoxAppController {
     }
 
     @GetMapping("gfa")
-    public String index(){
+    public String index() {
         return "gfa";
     }
 
     @GetMapping("gfa/list")
-    public String list(Model model){
+    public String list(Model model) {
         model.addAttribute("students", studentService.findAll());
         return "list";
+    }
+
+    @GetMapping("gfa/add")
+    public String add() {
+        return "add";
+    }
+
+    @PostMapping("gfa/save")
+    public String save(@RequestParam(name = "name") String name) {
+        studentService.save(name);
+        return "add";
     }
 }

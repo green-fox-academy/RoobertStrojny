@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Greenfox :: add</title>
+</head>
+<body>
+<h1>Add new student:</h1>
+<form action="" th:method="post" th:action="@{/gfa/save}">
+    <input type="text" th:name="name" required>
+    <button type="submit" th:text="Add"></button>
+</form>
+
+<a th:href="'/gfa'"><h1>BACK</h1></a>
+
+</body>
+</html>
