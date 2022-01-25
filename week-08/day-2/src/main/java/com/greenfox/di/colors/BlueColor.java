@@ -1,9 +1,8 @@
 package com.greenfox.di.colors;
 
-public class RedColor implements MyColor{
-
+public class BlueColor implements MyColor{
     @Override
     public String printColor() {
-        return "This is a RED color";
+        return "This is BLUE color";
     }
 }
