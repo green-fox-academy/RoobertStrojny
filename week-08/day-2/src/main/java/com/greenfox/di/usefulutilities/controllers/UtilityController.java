@@ -41,4 +41,16 @@ public class UtilityController {
         return "email";
     }
 
+    @GetMapping("useful/encoder")
+    public String encode(@RequestParam(value = "text") String text, @RequestParam(value = "number") int number, Model model) {
+        model.addAttribute("text", utilityService.caesar(text, number));
+        return "coder";
+    }
+
+    @GetMapping("useful/decoder")
+    public String decode(@RequestParam(value = "text") String text, @RequestParam(value = "number") int number, Model model) {
+        model.addAttribute("text", utilityService.caesar(text, number*-1));
+        return "coder";
+    }
+
 }
