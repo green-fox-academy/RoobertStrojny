@@ -49,7 +49,7 @@ public class UtilityController {
 
     @GetMapping("useful/decoder")
     public String decode(@RequestParam(value = "text") String text, @RequestParam(value = "number") int number, Model model) {
-        model.addAttribute("text", utilityService.caesar(text, number*-1));
+        model.addAttribute("text", utilityService.caesar(text, number * -1));
         return "coder";
     }
 

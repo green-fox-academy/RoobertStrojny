@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class StudentFileService implements StudentInterface{
+public class StudentFileService implements StudentInterface {
     private final List<String> names;
 
     public StudentFileService(List<String> names) {
@@ -35,7 +35,8 @@ public class StudentFileService implements StudentInterface{
 
     @Override
     public String count() {
-        return String.valueOf(names.size());    }
+        return String.valueOf(names.size());
+    }
 
     @Override
     public List<String> findAll() {
