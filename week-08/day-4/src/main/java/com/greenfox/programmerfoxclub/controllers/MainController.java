@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/")
 public class MainController {
 
     @GetMapping("/")
     public String index(@RequestParam(name = "name") String name, Model model) {
+        if (name.isEmpty()) {
+            return "/login";
+        }
         model.addAttribute("name", name);
         return "index";
     }
@@ -26,4 +28,6 @@ public class MainController {
         redirectAttributes.addAttribute("name", name);
         return "redirect:/";
     }
+
+
 }
