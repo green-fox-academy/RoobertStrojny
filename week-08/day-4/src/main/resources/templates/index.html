@@ -6,16 +6,21 @@
 </head>
 <body>
 <div>
-    <li><a href="">Information</a></li>
+    <ul>
+        <li><a href="#" th:href="@{/(name=${fox.getName()})}">Information</a></li>
+        <li><a href="" th:href="@{/nutritionStore(name=${fox.getName()})}">Nutrition Store</a></li>
+    </ul>
 </div>
 <div>
     <img src="../static/images/fox.png" alt="Fox" th:src="@{images/fox.png}">
-    <p>This is Mr. Fox. Currently living on pizza and lemonade. He knows 2 tricks.</p>
+    <p th:text="${fox.toString()}"></p>
 </div>
 <div>
     <h2>Known tricks</h2>
-    <li>write HTML</li>
-    <li>code in Java</li>
+    <p th:if="${fox.getTricks().isEmpty()}">You know no tricks, yet. Go and learn some.</p>
+    <ul>
+        <li th:each="tricks : ${fox.getTricks()}" th:text="tricks"></li>
+    </ul>
 </div>
 </body>
 </html>
