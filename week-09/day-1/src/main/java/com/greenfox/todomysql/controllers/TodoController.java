@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,5 +48,22 @@ public class TodoController {
     public String delete(@PathVariable long id) {
         todoRepository.deleteById(id);
         return "redirect:/todo/list";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable long id, Model model) {
+        model.addAttribute("id", id);
+        model.addAttribute("todo", todoRepository.getById(id));
+        model.addAttribute("action", todoRepository.getById(id).getTitle());
+        model.addAttribute("done", todoRepository.getById(id).isDone());
+        model.addAttribute("urgent", todoRepository.getById(id).isUrgent());
+        return "edit";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String editForm(@PathVariable long id, @ModelAttribute Todo todo, Model model) {
+        model.addAttribute("todo", todo);
+        todoRepository.save(todo);
+        return "redirect:/todo/";
     }
 }

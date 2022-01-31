@@ -16,13 +16,20 @@
         <th>DONE</th>
     </tr>
     <tr th:each="todo : ${todoList}">
-        <form action="#" th:action="@{'/todo/{id}/delete'(id=${todo.getId()})}" th:method="delete">
         <td th:text="${todo.getId()}"></td>
         <td th:text="${todo.getTitle()}"></td>
         <td th:text="${todo.isUrgent()}"></td>
         <td th:text="${todo.isDone()}"></td>
-        <td><button type="submit">delete</button></td>
-        </form>
+        <td>
+            <form action="#" th:action="@{'/todo/{id}/delete'(id=${todo.getId()})}" th:method="delete">
+                <button type="submit">delete</button>
+            </form>
+        </td>
+        <td>
+            <form action="#" th:action="@{'/todo/{id}/edit'(id=${todo.getId()})}" th:method="get">
+            <button type="submit">edit</button>
+            </form>
+        </td>
     </tr>
 </table>
 
