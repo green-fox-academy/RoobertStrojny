@@ -1,7 +1,5 @@
 package com.greenfox.programmerfoxclub.services;
 
-import com.greenfox.programmerfoxclub.models.Drink;
-import com.greenfox.programmerfoxclub.models.Food;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

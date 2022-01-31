@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class Fox {
     private final String name;
     private final List<String> tricks;
+    private Tricks trickList = new Tricks();
     private String food;
     private String drink;
 
@@ -28,7 +30,12 @@ public class Fox {
         return this.tricks;
     }
 
-    public void addTrick(String trick) {
+    public List<String> getRemainingTricksToLearn() {
+//        return trickList.getTricks().stream().filter(n -> tricks.stream().anyMatch(s -> s.matches(n))).collect(Collectors.toList());
+        return trickList.getTricks();
+    }
+
+    public void learnTrick(String trick) {
         if (tricks.stream().anyMatch(n -> n.matches(trick))) {
             return;
         }

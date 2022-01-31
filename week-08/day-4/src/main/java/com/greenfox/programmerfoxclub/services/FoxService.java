@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 @Service
 public class FoxService {
     private List<Fox> foxes;
+    private List<Tricks> tricks;
 
     public FoxService(List<Fox> foxes) {
         this.foxes = foxes;

@@ -43,12 +43,10 @@ public class MainController {
 
 
     @PostMapping("/login")
-    public String postLogin(@RequestParam(name = "name") String name, RedirectAttributes redirectAttributes, Model model) {
-        redirectAttributes.addAttribute("name", name);
+    public String postLogin(@RequestParam(name = "name") String name, Model model) {
         if (foxService.isFoxPresent(name)) {
             return "redirect:/";
         }
-        foxService.getFoxFromList(name).getTricks();
         foxService.addFox(name);
         model.addAttribute("name", name);
         return "redirect:/";

@@ -42,4 +42,22 @@ public class FoxController {
         foxService.getFoxFromList(name).setDrink(drink);
         return "redirect:/";
     }
+
+    @GetMapping("/trickCenter")
+    public String trickCenter(@RequestParam(name = "name") String name, Model model) {
+        model.addAttribute("name", name);
+        model.addAttribute("fox", foxService.getFoxFromList(name));
+        model.addAttribute("tricks", foxService.getFoxFromList(name).getRemainingTricksToLearn());
+        return "trick";
+    }
+
+    @PostMapping("/trickCenter")
+    public String trickCenter(@RequestParam(name = "name") String name,
+                              @RequestParam(name = "trick") String trick, Model model) {
+        model.addAttribute("name", name);
+        model.addAttribute("fox", foxService.getFoxFromList(name));
+        model.addAttribute("tricks", foxService.getFoxFromList(name).getRemainingTricksToLearn());
+        foxService.getFoxFromList(name).learnTrick(trick.toString());
+        return "trick";
+    }
 }
