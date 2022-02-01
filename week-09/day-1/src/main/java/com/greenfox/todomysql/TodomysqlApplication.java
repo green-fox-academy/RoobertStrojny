@@ -1,6 +1,8 @@
 package com.greenfox.todomysql;
 
+import com.greenfox.todomysql.models.Assignee;
 import com.greenfox.todomysql.models.Todo;
+import com.greenfox.todomysql.repositories.AssigneeRepository;
 import com.greenfox.todomysql.repositories.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -10,10 +12,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TodomysqlApplication implements CommandLineRunner {
     TodoRepository todoRepository;
+    AssigneeRepository assigneeRepository;
 
     @Autowired
-    public TodomysqlApplication(TodoRepository todoRepository) {
+    public TodomysqlApplication(TodoRepository todoRepository, AssigneeRepository assigneeRepository) {
         this.todoRepository = todoRepository;
+        this.assigneeRepository = assigneeRepository;
     }
 
     public static void main(String[] args) {
@@ -31,5 +35,7 @@ public class TodomysqlApplication implements CommandLineRunner {
         todoRepository.save(new Todo("Make the beds"));
         todoRepository.save(new Todo("Remove the grease"));
         todoRepository.save(new Todo("Wash the floors"));
+        assigneeRepository.save(new Assignee("Robert", "robert@robert.sk"));
+        assigneeRepository.save(new Assignee("Gregor", "gregor@gregor.sk"));
     }
 }

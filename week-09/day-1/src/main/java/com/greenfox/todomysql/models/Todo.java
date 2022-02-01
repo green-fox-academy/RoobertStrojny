@@ -3,10 +3,7 @@ package com.greenfox.todomysql.models;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "todos")
@@ -22,12 +19,14 @@ public class Todo {
     private boolean urgent = false;
     private boolean done = false;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Assignee assignee;
+
     public Todo(String title) {
         this.title = title;
     }
 
     public Todo() {
-
     }
 
 }
