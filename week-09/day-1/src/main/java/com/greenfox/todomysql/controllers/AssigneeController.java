@@ -27,6 +27,12 @@ public class AssigneeController {
         return "assignee/assigneeList";
     }
 
+    @GetMapping({"/{id}"})
+    public String showTodos(@PathVariable(required = false) long id, Model model) {
+            model.addAttribute("todos", assigneeRepository.getById(id).getTodo());
+        return "assignee/todos";
+    }
+
     @GetMapping("/add")
     public String addView(Model model) {
         model.addAttribute("assignee", new Assignee());

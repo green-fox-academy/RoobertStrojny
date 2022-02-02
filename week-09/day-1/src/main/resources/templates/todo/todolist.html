@@ -15,12 +15,14 @@
         <th>ACTION</th>
         <th>URGENT</th>
         <th>DONE</th>
+        <th>ASSIGNEE</th>
     </tr>
     <tr th:each="todo : ${todoList}">
         <td th:text="${todo.getId()}"></td>
         <td th:text="${todo.getTitle()}"></td>
         <td th:text="${todo.isUrgent()}"></td>
         <td th:text="${todo.isDone()}"></td>
+        <td><a href="#" th:if="${todo.getAssignee()} != null" th:text="${todo.getAssignee()}" th:href="@{'/assignee/{id}'(id=${todo.getAssigneeId()})}"></a></td>
         <td>
             <form action="#" th:action="@{'/todo/{id}/delete'(id=${todo.getId()})}" th:method="delete">
                 <button type="submit">delete</button>

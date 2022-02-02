@@ -2,8 +2,10 @@ package com.greenfox.todomysql.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.bytebuddy.utility.dispatcher.JavaDispatcher;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "assignees")
 @Getter
@@ -16,8 +18,8 @@ public class Assignee {
     private String name;
     private String email;
 
-    @OneToOne(mappedBy = "assignee")
-    private Todo todo;
+    @OneToMany
+    private List<Todo> todo;
 
     public Assignee() {
     }
@@ -26,4 +28,14 @@ public class Assignee {
         this.name = name;
         this.email = email;
     }
+
+    public void addTodo(Todo todo) {
+        this.todo.add(todo);
+    }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
+
 }

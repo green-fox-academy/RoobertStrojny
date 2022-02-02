@@ -59,17 +59,18 @@ public class TodoController {
         model.addAttribute("action", todoRepository.getById(id).getTitle());
         model.addAttribute("done", todoRepository.getById(id).isDone());
         model.addAttribute("urgent", todoRepository.getById(id).isUrgent());
-        model.addAttribute("assignees", assigneeRepository.findAll().stream().map(Assignee::getName).collect(Collectors.toList()));
-        model.addAttribute("assignee", new Assignee());
+        model.addAttribute("assignees", assigneeRepository.findAll());
 
         return "todo/edit";
     }
 
     @PostMapping("/{id}/edit")
-    public String editForm(@PathVariable long id, @ModelAttribute Todo todo, @ModelAttribute Assignee assignee, Model model) {
+    public String editForm(@PathVariable long id, @ModelAttribute Todo todo, @RequestParam Long assignee
+            , Model model) {
         model.addAttribute("todo", todo);
         model.addAttribute("assignee", assignee);
-        todo.setAssignee(assignee);
+        todo.setAssignee(assigneeRepository.getById(assignee));
+        assigneeRepository.getById(assignee).addTodo(todo);
         todoRepository.save(todo);
         return "redirect:/todo/";
     }

@@ -19,7 +19,7 @@ public class Todo {
     private boolean urgent = false;
     private boolean done = false;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Assignee assignee;
 
     public Todo(String title) {
@@ -27,6 +27,10 @@ public class Todo {
     }
 
     public Todo() {
+    }
+
+    public long getAssigneeId() {
+        return assignee.getId();
     }
 
 }

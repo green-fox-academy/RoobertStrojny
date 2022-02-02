@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todos</title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>TODOS</th>
+  </tr>
+  <tr th:each="todo : ${todos}">
+    <td th:text="${todo.getTitle()}"></td>
+  </tr>
+</table>
+<br>
+<a href="#" th:href="'/todo/'">back</a>
+</body>
+</html>

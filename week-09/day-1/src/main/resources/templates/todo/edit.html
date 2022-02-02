@@ -11,17 +11,10 @@
     <label>Urgent</label><input type="checkbox" th:field="*{urgent}" th:checked="${urgent}">
     <label>Done</label><input type="checkbox" th:field="*{done}" th:checked="${done}">
     <label>Add assignee</label>
-    <select>
-        <option th:each="assignee : ${assignees}" th:value="${assignee}" th:text="${assignee.toString()}"></option>
+    <select name="assignee" id="assignee">
+        <option th:each="assignee : ${assignees}" th:value="${assignee.id}" th:text="${assignee}"></option>
     </select>
     <button type="submit">Edit todo</button>
 </form>
-<!--<form action="#" th:action="@{'/todo/{id}/edit'(id=${id})}" th:object="${assignee}" th:method="post">-->
-<!--    <label>Add assignee</label>-->
-<!--    <select>-->
-<!--        <option th:each="assignee : ${assignees}" th:value="${assignee.getId()}" th:text="${assignee.toString()}"></option>-->
-<!--    </select>-->
-<!--    <button type="submit">Add</button>-->
-<!--</form>-->
 </body>
 </html>
