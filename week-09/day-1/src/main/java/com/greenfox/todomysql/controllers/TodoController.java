@@ -1,6 +1,5 @@
 package com.greenfox.todomysql.controllers;
 
-import com.greenfox.todomysql.models.Assignee;
 import com.greenfox.todomysql.models.Todo;
 import com.greenfox.todomysql.repositories.AssigneeRepository;
 import com.greenfox.todomysql.repositories.TodoRepository;
@@ -9,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Controller
@@ -24,11 +26,26 @@ public class TodoController {
     }
 
     @GetMapping({"/", "/list"})
-    public String view(@RequestParam(value = "isActive", required = false) boolean isActive, Model model) {
-        if (isActive) {
-            model.addAttribute("todoList", todoRepository.findAllByDoneFalse());
-        } else {
+    public String view(@RequestParam(required = false) String search, Model model) {
+        if (search == null) {
             model.addAttribute("todoList", todoRepository.findAll());
+            return "todo/todolist";
+        }
+        model.addAttribute("search", search);
+        return "todo/todolist";
+    }
+
+    @PostMapping("/search")
+    public String search(@RequestParam(name = "searchString") String search, Model model) {
+        model.addAttribute("search", search);
+        if (!todoRepository.findAllByTitleLike(search).isEmpty()) {
+            model.addAttribute("todoList", todoRepository.findAllByTitleLike(search));
+        }
+        if(!todoRepository.findAllByDescriptionLike(search).isEmpty()) {
+            model.addAttribute("todoList", todoRepository.findAllByDescriptionLike(search));
+        }
+        if(!todoRepository.findAllByAssigneeName(search).isEmpty()) {
+            model.addAttribute("todoList", todoRepository.findAllByAssigneeName(search));
         }
         return "todo/todolist";
     }
