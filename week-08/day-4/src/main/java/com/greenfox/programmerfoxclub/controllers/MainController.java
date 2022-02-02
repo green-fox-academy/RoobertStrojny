@@ -1,5 +1,9 @@
 package com.greenfox.programmerfoxclub.controllers;
 
+import com.greenfox.programmerfoxclub.models.Fox;
+import com.greenfox.programmerfoxclub.models.User;
+import com.greenfox.programmerfoxclub.repositories.FoxRepository;
+import com.greenfox.programmerfoxclub.repositories.UserRepository;
 import com.greenfox.programmerfoxclub.services.FoxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +19,14 @@ import java.io.IOException;
 public class MainController {
 
     FoxService foxService;
+    UserRepository userRepository;
+    FoxRepository foxRepository;
 
     @Autowired
-    public MainController(FoxService foxService) {
+    public MainController(FoxService foxService, UserRepository userRepository, FoxRepository foxRepository) {
         this.foxService = foxService;
+        this.userRepository = userRepository;
+        this.foxRepository = foxRepository;
     }
 
     @GetMapping("/")
@@ -53,6 +61,27 @@ public class MainController {
         redirectAttributes.addAttribute("name", name);
         model.addAttribute("name", name);
         return "redirect:/";
+    }
+
+    @GetMapping("/register")
+    public String register(Model model, RedirectAttributes redirectAttributes) {
+        model.addAttribute("user", new User());
+        model.addAttribute("wrongRetype", false);
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String registerForm(@ModelAttribute User user, Model model,RedirectAttributes redirectAttributes) {
+
+        if (user.getPassword().matches(user.getRetypePassword())) {
+            userRepository.save(user);
+            user.setFox(new Fox(user.getName()));
+            foxService.addFox(user.getName());
+            redirectAttributes.addAttribute("name", user.getName());
+            return "redirect:/";
+        }
+        model.addAttribute("wrongRetype", true);
+        return "register";
     }
 
 

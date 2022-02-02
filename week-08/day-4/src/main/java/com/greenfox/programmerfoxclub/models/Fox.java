@@ -26,7 +26,8 @@ public class Fox {
     private Tricks trickList = new Tricks();
     private String food;
     private String drink;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Fox(String name) {

@@ -16,7 +16,9 @@ public class User {
 
     private String name;
     private String password;
-    @OneToOne
+    @Transient
+    private String retypePassword;
+    @OneToOne(mappedBy = "user")
     private Fox fox;
 
     public User(String name, String password) {
