@@ -20,7 +20,7 @@
     <h2>Known tricks</h2>
     <p th:if="${fox.getTricks().isEmpty()}">You know no tricks, yet. Go and learn some.</p>
     <ul>
-        <li th:each="tricks : ${fox.getTricks()}" th:text="tricks"></li>
+        <li th:each="trick : ${fox.getTricks()}" th:text="${trick.toString()}"></li>
     </ul>
 </div>
 </body>

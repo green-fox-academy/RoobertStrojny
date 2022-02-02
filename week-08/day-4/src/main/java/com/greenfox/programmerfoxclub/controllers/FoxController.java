@@ -57,7 +57,7 @@ public class FoxController {
         model.addAttribute("name", name);
         model.addAttribute("fox", foxService.getFoxFromList(name));
         model.addAttribute("tricks", foxService.getFoxFromList(name).getRemainingTricksToLearn());
-        foxService.getFoxFromList(name).learnTrick(trick.toString());
+        foxService.getFoxFromList(name).learnTrick(trick);
         return "trick";
     }
 }

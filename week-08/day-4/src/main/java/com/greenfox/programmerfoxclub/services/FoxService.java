@@ -2,6 +2,8 @@ package com.greenfox.programmerfoxclub.services;
 
 import com.greenfox.programmerfoxclub.models.Fox;
 import com.greenfox.programmerfoxclub.models.Tricks;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Service
+@Getter
+@Setter
 public class FoxService {
     private List<Fox> foxes;
     private List<Tricks> tricks;

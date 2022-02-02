@@ -1,25 +1,42 @@
 package com.greenfox.programmerfoxclub.models;
 
 import com.greenfox.programmerfoxclub.services.FoodAndDrinkService;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+@Entity
+@Getter
+@Setter
 public class Fox {
-    private final String name;
-    private final List<String> tricks;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String name;
+    @Transient
+    private List<String> tricks;
+    @Transient
     private Tricks trickList = new Tricks();
     private String food;
     private String drink;
+    @OneToOne
+    private User user;
 
     public Fox(String name) {
         this.name = name;
         this.tricks = new ArrayList<>();
         this.food = "salad";
         this.drink = "water";
+    }
+
+    public Fox() {
     }
 
     public String getName() {
@@ -31,7 +48,7 @@ public class Fox {
     }
 
     public List<String> getRemainingTricksToLearn() {
-//        return trickList.getTricks().stream().filter(n -> tricks.stream().anyMatch(s -> s.matches(n))).collect(Collectors.toList());
+        trickList.getTricks().removeIf(trick -> tricks.contains(trick));
         return trickList.getTricks();
     }
 
@@ -42,25 +59,8 @@ public class Fox {
         tricks.add(trick);
     }
 
-    public String getFood() {
-        return food;
-    }
-
-
-    public String getDrink() {
-        return drink;
-    }
-
-    public void setFood(String food) {
-        this.food = food;
-    }
-
-    public void setDrink(String drink) {
-        this.drink = drink;
-    }
-
     @Override
     public String toString() {
-        return "This is " + name + ". Currently living on " + food + " and " + drink +". He knows " + tricks.size() + " tricks.";
+        return "This is " + name + ". Currently living on " + food + " and " + drink + ". He knows " + tricks.size() + " tricks.";
     }
 }

@@ -22,7 +22,7 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String index(@RequestParam(name = "name", required = false) String name,RedirectAttributes redirectAttributes, Model model, HttpServletResponse httpServletResponse) throws IOException {
+    public String index(@RequestParam(name = "name", required = false) String name, RedirectAttributes redirectAttributes, Model model) {
         redirectAttributes.addAttribute("name", name);
         if (name == null) {
             return "redirect:/login";
@@ -43,11 +43,14 @@ public class MainController {
 
 
     @PostMapping("/login")
-    public String postLogin(@RequestParam(name = "name") String name, Model model) {
+    public String postLogin(@RequestParam(name = "name") String name, Model model, RedirectAttributes redirectAttributes) {
         if (foxService.isFoxPresent(name)) {
+            redirectAttributes.addAttribute("name", name);
+            model.addAttribute("name", name);
             return "redirect:/";
         }
         foxService.addFox(name);
+        redirectAttributes.addAttribute("name", name);
         model.addAttribute("name", name);
         return "redirect:/";
     }
