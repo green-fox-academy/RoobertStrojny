@@ -18,12 +18,8 @@
         <tr th:each="post : ${posts}">
             <td th:text="${post.getId()}"></td>
             <td th:text="${post.getLikes()}"></td>
-            <td>
-                <form action="#" th:action="@{/increment}" th:method="post" th:object="${post}">
-                    <input type="submit" value="+">
-                </form>
-            </td>
-            <td><button>-</button></td>
+            <td><a th:href="@{/voteUp/{id}(id=${post.getId()})}">+</a></td>
+            <td><a th:href="@{/voteDown/{id}(id=${post.getId()})}">-</a></td>
             <td><a th:href="@{${post.getUrl()}}"><p th:text="${post.getTitle()}"></p></a></td>
         </tr>
     </table>

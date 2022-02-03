@@ -5,10 +5,7 @@ import com.greenfox.reddit.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PostController {
@@ -29,21 +26,30 @@ public class PostController {
     @GetMapping("/submit")
     public String submit(Model model) {
         model.addAttribute("post", new Post());
+        model.addAttribute("failed", false);
         return "submit";
     }
 
     @PostMapping("/submitPost")
-    public String submitPost(@ModelAttribute Post post) {
-        postService.savePost(post);
+    public String submitPost(@ModelAttribute Post post, Model model) {
+        if (!post.getTitle().isEmpty() && !post.getUrl().isEmpty()) {
+            postService.savePost(post);
+            return "redirect:/";
+        } else {
+            model.addAttribute("failed", true);
+        }
+        return "submit";
+    }
+
+    @GetMapping("/voteUp/{id}")
+    public String increment(@PathVariable Integer id) {
+        postService.incrementPost(id);
         return "redirect:/";
     }
 
-    @PostMapping("/increment")
-    public String increment(@ModelAttribute("post") Post post) {
-        postService.incrementPost(post);
-        postService.savePost(post);
+    @GetMapping("/voteDown/{id}")
+    public String decrement(@PathVariable Integer id) {
+        postService.decrementPost(id);
         return "redirect:/";
     }
-
-    
 }

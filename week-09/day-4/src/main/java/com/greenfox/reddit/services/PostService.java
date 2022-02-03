@@ -32,7 +32,16 @@ public class PostService implements PostInterface{
     }
 
     @Override
-    public void incrementPost(Post post) {
-        postRepository.getById(post.getId()).increment();
+    public void incrementPost(int id) {
+        Post temp = postRepository.getById(id);
+        temp.increment();
+        postRepository.save(temp);
+    }
+
+    @Override
+    public void decrementPost(int id) {
+        Post temp = postRepository.getById(id);
+        temp.decrement();
+        postRepository.save(temp);
     }
 }

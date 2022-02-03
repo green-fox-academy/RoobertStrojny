@@ -7,5 +7,6 @@ import java.util.List;
 public interface PostInterface {
     List<Post> getAllPosts();
     void savePost(Post post);
-    void incrementPost(Post post);
+    void incrementPost(int id);
+    void decrementPost(int id);
 }
