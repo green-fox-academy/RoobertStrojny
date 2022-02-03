@@ -18,7 +18,7 @@ public class Post {
     private String url;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+//    @JoinColumn(name = "user_id")
     private User user;
 
     public Post() {
@@ -27,5 +27,13 @@ public class Post {
     public Post(String title, String url) {
         this.title = title;
         this.url = url;
+    }
+
+    public void increment() {
+        likes++;
+    }
+
+    public void decrement() {
+        likes--;
     }
 }
