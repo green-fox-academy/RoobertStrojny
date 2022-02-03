@@ -7,7 +7,11 @@
 </head>
 <body>
 <div>
-    <a href="#" th:href="@{/submit}">Submit new post</a>
+    <a href="" th:href="@{/login}">Login</a>
+    <br>
+    <a href="#" th:href="@{/register}">Register</a>
+    <br>
+    <a href="#" th:href="@{/submit/{id}(id=${user.getId()})}">Submit new post</a>
 </div>
 <div id="spacer-side">
     <h1>Trending posts</h1>
@@ -23,6 +27,9 @@
             <td><a th:href="@{${post.getUrl()}}"><p th:text="${post.getTitle()}"></p></a></td>
         </tr>
     </table>
+</div>
+<div>
+    <h1 th:text="${user}"></h1>
 </div>
 </body>
 </html>

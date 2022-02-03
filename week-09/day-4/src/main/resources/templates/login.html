@@ -5,6 +5,20 @@
     <title>Login - Reddit project</title>
 </head>
 <body>
-    
+<div>
+    <h1>User login</h1>
+</div>
+
+<div>
+    <form th:action="@{/login}" th:method="post">
+        <label>Username: </label>
+        <input type="text" th:name="user">
+        <br>
+        <label>Password: </label>
+        <input type="password" th:name="password">
+        <br>
+        <button type="submit">Login</button>
+    </form>
+</div>
 </body>
 </html>

@@ -22,4 +22,19 @@ public class UserService implements UserInterface {
     public void saveUser(User user) {
         userRepository.save(user);
     }
+
+    @Override
+    public boolean validateUser(String username, String password) {
+        return userRepository.getUserByUsernameAndPassword(username, password) != null;
+    }
+
+    @Override
+    public User getUserByUsername(String username) {
+        return userRepository.getUserByUsername(username);
+    }
+
+    @Override
+    public User getUserById(Integer id) {
+        return userRepository.getById(id);
+    }
 }

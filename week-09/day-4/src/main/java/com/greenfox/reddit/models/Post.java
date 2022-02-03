@@ -2,8 +2,10 @@ package com.greenfox.reddit.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -17,8 +19,11 @@ public class Post {
     private Integer likes = 0;
     private String url;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date creationDate = new Date();
+
     @ManyToOne
-//    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Post() {
