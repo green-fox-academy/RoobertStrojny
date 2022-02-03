@@ -18,7 +18,8 @@ public class User {
     private String password;
     @Transient
     private String retypePassword;
-    @OneToOne(mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fox_id")
     private Fox fox;
 
     public User(String name, String password) {

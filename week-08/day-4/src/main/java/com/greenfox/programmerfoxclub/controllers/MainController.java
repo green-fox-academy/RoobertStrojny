@@ -64,7 +64,7 @@ public class MainController {
     }
 
     @GetMapping("/register")
-    public String register(Model model, RedirectAttributes redirectAttributes) {
+    public String register(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("wrongRetype", false);
         return "register";
@@ -76,6 +76,7 @@ public class MainController {
         if (user.getPassword().matches(user.getRetypePassword())) {
             userRepository.save(user);
             user.setFox(new Fox(user.getName()));
+            foxRepository.save(foxService.getFoxFromList(user.getName()));
             foxService.addFox(user.getName());
             redirectAttributes.addAttribute("name", user.getName());
             return "redirect:/";

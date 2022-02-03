@@ -24,10 +24,11 @@ public class Fox {
     private List<String> tricks;
     @Transient
     private Tricks trickList = new Tricks();
+    @Transient
     private String food;
+    @Transient
     private String drink;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @OneToOne(mappedBy = "fox")
     private User user;
 
     public Fox(String name) {
