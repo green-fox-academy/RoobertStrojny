@@ -48,6 +48,6 @@ public class Post {
 
     public long timeDifference() {
         LocalDateTime now = LocalDateTime.now();
-        return ChronoUnit.MINUTES.between(now, creationDate);
+        return ChronoUnit.MINUTES.between(now, creationDate) / -1;
     }
 }
