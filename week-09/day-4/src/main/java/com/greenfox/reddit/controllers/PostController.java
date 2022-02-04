@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Objects;
+
 @Controller
 @SessionAttributes("user")
 public class PostController {
@@ -24,9 +26,10 @@ public class PostController {
     }
 
     @GetMapping("/")
-    public String viewPosts(@SessionAttribute(value = "user",required = false) User userSession, Model model, RedirectAttributes redirectAttributes) {
+    public String viewPosts(@SessionAttribute(value = "user", required = false) User userSession, Model model) {
         if (userSession == null) {
-            model.addAttribute("currentUser", new User());
+            userSession = new User();
+            model.addAttribute("currentUser", userSession);
         }
         model.addAttribute("posts", postService.getAllPosts());
         model.addAttribute("currentUser", userSession);
@@ -35,16 +38,23 @@ public class PostController {
 
     @GetMapping("/submit/")
     public String submit(Model model) {
-        model.addAttribute("post", new Post());
+        Post createPost = new Post();
+        model.addAttribute("post", createPost);
         model.addAttribute("failed", false);
         return "submit";
     }
 
     @PostMapping("/submitPost/")
-    public String submitPost(@ModelAttribute Post post, @ModelAttribute("user") User user, Model model) {
+    public String submitPost(@ModelAttribute Post post, @SessionAttribute(value = "user", required = false) User user, Model model) {
         if (!post.getTitle().isEmpty() && !post.getUrl().isEmpty()) {
-            post.setUser(user);
-            postService.savePost(post);
+            if (Objects.equals(user, new User())) {
+                postService.savePost(post);
+            } else {
+                postService.savePost(post);
+                post.setUser(user);
+                postService.savePost(post);
+            }
+
             return "redirect:/";
         } else {
             model.addAttribute("failed", true);
@@ -53,7 +63,9 @@ public class PostController {
     }
 
     @GetMapping("/voteUp/{id}")
-    public String increment(@PathVariable Integer id) {
+    public String increment(@PathVariable Integer id, @SessionAttribute(value = "user", required = false) User user) {
+        user = new User();
+        userService.saveUser(user);
         postService.incrementPost(id);
         return "redirect:/";
     }

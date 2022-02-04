@@ -26,6 +26,7 @@
             <td><a th:href="@{/voteDown/{id}(id=${post.getId()})}">-</a></td>
             <td><a th:href="@{${post.getUrl()}}"><p th:text="${post.getTitle()}"></p></a></td>
             <td th:text="${post.getUser()}"></td>
+            <td th:text="${post.timeDifference()}"></td>
         </tr>
     </table>
 </div>

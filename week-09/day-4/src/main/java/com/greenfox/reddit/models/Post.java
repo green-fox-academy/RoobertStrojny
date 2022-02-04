@@ -5,7 +5,11 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.util.Date;
+import java.util.Map;
 
 @Entity
 @Getter
@@ -20,9 +24,9 @@ public class Post {
     private String url;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date creationDate = new Date();
+    private LocalDateTime creationDate = LocalDateTime.now();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -40,5 +44,10 @@ public class Post {
 
     public void decrement() {
         likes--;
+    }
+
+    public long timeDifference() {
+        LocalDateTime now = LocalDateTime.now();
+        return ChronoUnit.MINUTES.between(now, creationDate);
     }
 }

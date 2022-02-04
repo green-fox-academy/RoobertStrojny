@@ -5,14 +5,16 @@ import com.greenfox.reddit.repositories.PostRepository;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
+import java.util.Date;
 import java.util.List;
 
 @Service
 @Getter
-public class PostService implements PostInterface{
+public class PostService implements PostInterface {
 
     PostRepository postRepository;
 
@@ -44,4 +46,5 @@ public class PostService implements PostInterface{
         temp.decrement();
         postRepository.save(temp);
     }
+
 }
