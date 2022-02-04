@@ -2,7 +2,6 @@ package com.greenfox.reddit.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.persistence.*;
 import java.util.List;

@@ -10,7 +10,7 @@
 </div>
 
 <div>
-    <form action="#" th:action="@{/submitPost}" th:method="post" th:object="${post}">
+    <form action="#" th:action="@{/submitPost/}" th:method="post" th:object="${post}">
         <label>Title: </label>
         <input type="text" th:field="*{title}">
         <br>
