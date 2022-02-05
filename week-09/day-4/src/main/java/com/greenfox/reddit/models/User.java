@@ -18,7 +18,7 @@ public class User {
     private String username;
     private String password;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Post> posts;
 
     public User() {
@@ -29,6 +29,13 @@ public class User {
         this.password = password;
     }
 
+    public void addPost(Post post) {
+        posts.add(post);
+    }
+
+    public boolean containsPost(Post post) {
+        return posts.contains(post);
+    }
 
     @Override
     public String toString() {

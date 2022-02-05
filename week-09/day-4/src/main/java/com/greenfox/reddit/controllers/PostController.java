@@ -63,13 +63,29 @@ public class PostController {
 
     @GetMapping("/voteUp/{id}")
     public String increment(@PathVariable Integer id, @SessionAttribute(value = "user", required = false) User user) {
+        if (user == null) {
+            return "redirect:/";
+        }
+        if (userService.userAlreadyVotedForPost(user, postService.getPostById(id))) {
+            return "redirect:/";
+        }
         postService.incrementPost(id);
+        user.addPost(postService.getPostById(id));
+        userService.saveUser(user);
         return "redirect:/";
     }
 
     @GetMapping("/voteDown/{id}")
-    public String decrement(@PathVariable Integer id) {
+    public String decrement(@PathVariable Integer id, @SessionAttribute(value = "user", required = false) User user) {
+        if (user == null) {
+            return "redirect:/";
+        }
+        if (userService.userAlreadyVotedForPost(user, postService.getPostById(id))) {
+            return "redirect:/";
+        }
         postService.decrementPost(id);
+        user.addPost(postService.getPostById(id));
+        userService.saveUser(user);
         return "redirect:/";
     }
 }

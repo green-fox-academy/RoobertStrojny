@@ -1,5 +1,6 @@
 package com.greenfox.reddit.services;
 
+import com.greenfox.reddit.models.Post;
 import com.greenfox.reddit.models.User;
 import com.greenfox.reddit.repositories.UserRepository;
 import lombok.Getter;
@@ -36,5 +37,10 @@ public class UserService implements UserInterface {
     @Override
     public User getUserById(Integer id) {
         return userRepository.getById(id);
+    }
+
+    @Override
+    public boolean userAlreadyVotedForPost(User user, Post post) {
+        return userRepository.getById(user.getId()).containsPost(post);
     }
 }

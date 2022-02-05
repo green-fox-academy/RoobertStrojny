@@ -47,4 +47,8 @@ public class PostService implements PostInterface {
         postRepository.save(temp);
     }
 
+    @Override
+    public Post getPostById(int id) {
+        return postRepository.getById(id);
+    }
 }

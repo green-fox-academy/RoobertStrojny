@@ -12,4 +12,5 @@ public interface PostInterface {
     void savePost(Post post);
     void incrementPost(int id);
     void decrementPost(int id);
+    Post getPostById(int id);
 }
