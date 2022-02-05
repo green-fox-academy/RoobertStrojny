@@ -28,12 +28,11 @@ public class PostController {
     @GetMapping("/")
     public String viewPosts(@SessionAttribute(value = "user", required = false) User userSession, Model model) {
         if (userSession == null) {
-            userSession = new User();
             model.addAttribute("currentUser", userSession);
         }
         model.addAttribute("posts", postService.getAllPosts());
         model.addAttribute("currentUser", userSession);
-        return "index";
+        return "index";//
     }
 
     @GetMapping("/submit/")
@@ -64,8 +63,6 @@ public class PostController {
 
     @GetMapping("/voteUp/{id}")
     public String increment(@PathVariable Integer id, @SessionAttribute(value = "user", required = false) User user) {
-        user = new User();
-        userService.saveUser(user);
         postService.incrementPost(id);
         return "redirect:/";
     }

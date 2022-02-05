@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -46,8 +47,30 @@ public class Post {
         likes--;
     }
 
-    public long timeDifference() {
+    public long timeDifferenceInMinutes() {
         LocalDateTime now = LocalDateTime.now();
         return ChronoUnit.MINUTES.between(now, creationDate) / -1;
+    }
+
+    public long timeDifferenceInHours() {
+        LocalDateTime now = LocalDateTime.now();
+        return ChronoUnit.HOURS.between(now, creationDate) / -1;
+    }
+
+    public long timeDifferenceInDays() {
+        LocalDateTime now = LocalDateTime.now();
+        return ChronoUnit.DAYS.between(now, creationDate) / -1;
+    }
+
+    public String getTimeDifference() {
+        if (timeDifferenceInMinutes() < 2) {
+            return "Posted now";
+        }else if (timeDifferenceInMinutes() < 60) {
+            return "Posted " + timeDifferenceInMinutes() + " minutes ago";
+        }else if (timeDifferenceInHours() < 24) {
+            return "Posted " + timeDifferenceInHours() + " hours ago";
+        } else {
+            return "Posted " + timeDifferenceInDays() + " days ago";
+        }
     }
 }

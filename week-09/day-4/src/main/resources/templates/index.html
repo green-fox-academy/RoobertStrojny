@@ -27,6 +27,10 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/register}">Register</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" th:if="${currentUser} != null" th:text="'Logged in as: ' + ${currentUser}"></a>
+                <a class="nav-link disabled" href="#" th:if="${currentUser} == null" th:text="'Logged in as: anonymous'"></a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -52,26 +56,11 @@
         <td><a th:href="@{/voteUp/{id}(id=${post.getId()})}">+</a></td>
         <td><a th:href="@{/voteDown/{id}(id=${post.getId()})}">-</a></td>
         <td><a th:href="@{${post.getUrl()}}"><p th:text="${post.getTitle()}"></p></a></td>
-        <td th:text="${post.getUser()}"></td>
-        <td th:text="${post.timeDifference()}"></td>
+        <td th:if="${post.getUser() != null}" th:text="${post.getUser()}"></td>
+        <td th:if="${post.getUser() == null}" th:text="'anonymous'"></td>
+        <td th:text="${post.getTimeDifference()}"></td>
     </tr>
     </tbody>
 </table>
-
-<div>
-    <table>
-        <tr th:each="post : ${posts}">
-            <td th:text="${post.getLikes()}"></td>
-            <td><a th:href="@{/voteUp/{id}(id=${post.getId()})}">+</a></td>
-            <td><a th:href="@{/voteDown/{id}(id=${post.getId()})}">-</a></td>
-            <td><a th:href="@{${post.getUrl()}}"><p th:text="${post.getTitle()}"></p></a></td>
-            <td th:text="${post.getUser()}"></td>
-            <td th:text="${post.timeDifference()}"></td>
-        </tr>
-    </table>
-</div>
-<div>
-    <h1 th:text="${currentUser}"></h1>
-</div>
 </body>
 </html>
