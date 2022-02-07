@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Arrays;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -12,4 +14,11 @@ import lombok.Setter;
 public class ArrayDto {
     private String what;
     private int[] numbers;
+
+    @Override
+    public String toString() {
+        return "what='" + what + '\'' +
+                ", numbers=" + Arrays.toString(numbers) +
+                '}';
+    }
 }

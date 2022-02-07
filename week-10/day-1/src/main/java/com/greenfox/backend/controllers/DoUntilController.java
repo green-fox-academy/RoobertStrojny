@@ -5,6 +5,7 @@ import com.greenfox.backend.models.DoUntilDto;
 import com.greenfox.backend.models.ErrorMessage;
 import com.greenfox.backend.services.DoUntilService;
 import com.greenfox.backend.services.DoUntilServiceImpl;
+import com.greenfox.backend.services.LogServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,10 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DoUntilController {
     DoUntilServiceImpl doUntilService;
+    LogServiceImpl logService;
 
     @Autowired
-    public DoUntilController(DoUntilServiceImpl doUntilService) {
+    public DoUntilController(DoUntilServiceImpl doUntilService, LogServiceImpl logService) {
         this.doUntilService = doUntilService;
+        this.logService = logService;
     }
 
     @PostMapping("/dountil/{operation}")
@@ -27,8 +30,10 @@ public class DoUntilController {
             return ResponseEntity.ok(new ErrorMessage("Please provide a number!"));
         }
         if (operation.equals("sum")) {
+            logService.saveLog("/dountil/sum", untilDto.toString());
             return ResponseEntity.ok(doUntilService.sum(untilDto.getUntil()));
         } else if (operation.equals("factor")){
+            logService.saveLog("/dountil/factor", untilDto.toString());
             return ResponseEntity.ok(doUntilService.factorial(untilDto.getUntil()));
         } else {
             return ResponseEntity.ok(new ErrorMessage("Bad operation"));
