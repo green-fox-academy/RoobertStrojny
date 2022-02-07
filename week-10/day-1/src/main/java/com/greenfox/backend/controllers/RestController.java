@@ -1,10 +1,12 @@
 package com.greenfox.backend.controllers;
 
+import com.greenfox.backend.models.Append;
 import com.greenfox.backend.models.Doubling;
 import com.greenfox.backend.models.Greeter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @org.springframework.web.bind.annotation.RestController
@@ -32,5 +34,11 @@ public class RestController {
             greeter.setErrorBasedOnInputs();
             return ResponseEntity.status(400).body(greeter);
         }
+    }
+
+    @GetMapping("/appenda/{appendable}")
+    public ResponseEntity<?> getAppend(@PathVariable String appendable) {
+        Append append = new Append(appendable);
+        return ResponseEntity.status(200).body(append);
     }
 }
