@@ -9,6 +9,6 @@ public class Append {
     private String appended;
 
     public Append(String appended) {
-        this.appended = appended.concat("a");
+        this.appended = appended;
     }
 }

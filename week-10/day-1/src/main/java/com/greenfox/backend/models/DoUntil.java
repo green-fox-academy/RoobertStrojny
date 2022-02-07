@@ -7,13 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Doubling {
-
-    private int received;
+public class DoUntil {
     private int result;
 
-    public Doubling(int received) {
-        this.received = received;
-        this.result = received * 2;
+    public DoUntil(int result) {
+        this.result = result;
     }
 }
