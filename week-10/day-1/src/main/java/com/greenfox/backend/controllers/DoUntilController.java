@@ -1,9 +1,7 @@
 package com.greenfox.backend.controllers;
 
-import com.greenfox.backend.models.DoUntil;
-import com.greenfox.backend.models.DoUntilDto;
+import com.greenfox.backend.models.dountil.DoUntilDto;
 import com.greenfox.backend.models.ErrorMessage;
-import com.greenfox.backend.services.DoUntilService;
 import com.greenfox.backend.services.DoUntilServiceImpl;
 import com.greenfox.backend.services.LogServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

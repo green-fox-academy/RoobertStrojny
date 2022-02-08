@@ -1,4 +1,4 @@
-package com.greenfox.backend.models;
+package com.greenfox.backend.models.logs;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

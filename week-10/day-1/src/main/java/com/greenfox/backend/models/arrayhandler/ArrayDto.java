@@ -1,4 +1,4 @@
-package com.greenfox.backend.models;
+package com.greenfox.backend.models.arrayhandler;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

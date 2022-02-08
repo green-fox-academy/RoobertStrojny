@@ -1,6 +1,6 @@
 package com.greenfox.backend.services;
 
-import com.greenfox.backend.models.DoUntil;
+import com.greenfox.backend.models.dountil.DoUntil;
 import org.springframework.stereotype.Service;
 
 @Service

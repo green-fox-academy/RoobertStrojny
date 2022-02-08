@@ -1,6 +1,5 @@
 package com.greenfox.backend.controllers;
 
-import com.greenfox.backend.models.Append;
 import com.greenfox.backend.services.AppendServiceImpl;
 import com.greenfox.backend.services.LogServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

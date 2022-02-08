@@ -1,7 +1,7 @@
 package com.greenfox.backend.services;
 
-import com.greenfox.backend.models.ArrayResult;
-import com.greenfox.backend.models.NumberResult;
+import com.greenfox.backend.models.arrayhandler.ArrayResult;
+import com.greenfox.backend.models.arrayhandler.NumberResult;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;

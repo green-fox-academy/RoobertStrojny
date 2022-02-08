@@ -1,7 +1,7 @@
 package com.greenfox.backend.services;
 
-import com.greenfox.backend.models.Log;
-import com.greenfox.backend.models.Logs;
+import com.greenfox.backend.models.logs.Log;
+import com.greenfox.backend.models.logs.Logs;
 import com.greenfox.backend.repositories.LogRepository;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;

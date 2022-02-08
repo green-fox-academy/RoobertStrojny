@@ -1,6 +1,6 @@
 package com.greenfox.backend.controllers;
 
-import com.greenfox.backend.models.ArrayDto;
+import com.greenfox.backend.models.arrayhandler.ArrayDto;
 import com.greenfox.backend.models.ErrorMessage;
 import com.greenfox.backend.services.ArrayServiceImpl;
 import com.greenfox.backend.services.LogServiceImpl;

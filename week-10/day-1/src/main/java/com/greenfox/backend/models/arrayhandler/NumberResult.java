@@ -1,15 +1,14 @@
-package com.greenfox.backend.models;
+package com.greenfox.backend.models.arrayhandler;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ArrayResult {
-    private int[] result;
+public class NumberResult {
+    private int result;
 }

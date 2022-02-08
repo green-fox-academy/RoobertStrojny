@@ -1,6 +1,5 @@
-package com.greenfox.backend.models;
+package com.greenfox.backend.models.logs;
 
-import com.greenfox.backend.services.LogServiceImpl;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
